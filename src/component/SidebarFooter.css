@@ -1,0 +1,46 @@
+.sidebarFooterImgBox {
+  display: flex;
+  width: 148px;
+  height: 36px;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  flex-shrink: 0;
+}
+
+.sidebarFooter {
+  height: 172px;
+  display: flex;
+  justify-content: center;
+  background-color: #E8E2F4;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+.appBarFooter {
+  box-shadow: none !important;
+  margin-top: auto;
+}
+
+.imgBoxAndSelect {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  align-self: flex-end;
+  margin-bottom: 16px;
+  width: 100%;
+}
+
+.sidebarFooterWave {
+  background-color: #fff;
+}
+
+.separator {
+  width: 100%;
+  height: 1px; /* высота линии */
+  background-color: #C6B6E3; /* цвет линии */
+  margin-top: 20px; /* отступ сверху */
+  margin-bottom: 20px; /* отступ снизу */
+  border: none;
+}

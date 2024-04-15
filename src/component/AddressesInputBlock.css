@@ -1,0 +1,74 @@
+.addressesInputBlock {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  margin-top: 40px;
+  border: 1px solid #C6B6E3;
+  border-radius: 20px;
+  width: 328px;
+  height: fit-content;
+  padding: 16px;
+  background-color: #FCF9F9;
+}
+
+.addressInputBlockForm {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.citySelectBlock {
+  align-self: flex-start;
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 100%;
+  color: #2D2D2D;
+  margin-bottom: 16px;
+  margin-left: 16px;
+}
+
+.customSlider {
+  width: 300px;
+  margin-bottom: 16px;
+}
+
+.sliderIcon {
+  color: #2D2D2D;
+}
+
+.MuiSlider-markLabel {
+  top: -20px;
+}
+
+.textfieldLabel {
+  align-self: flex-start;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 114%;
+  color: #2D2D2D;
+}
+
+.addressTextfieldBlock {
+  margin-bottom: 16px;
+}
+
+.addressTextfield {
+  border-radius: 8px !important;
+}
+
+.agreeBlock {
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.addressesInputButton {
+  color: #FDFCFC !important;
+  border-radius: 8px;
+  padding: 16px 32px !important;
+  width: 237px;
+  height: 48px;
+  text-transform: none !important;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 100%;
+}

@@ -1,0 +1,17 @@
+.customSlider {
+  display: flex;
+  flex-direction: row;
+  width: 300px;
+  gap: 4px;
+  align-items: center;
+}
+
+.walkIcon {
+  color: #2D2D2D;
+  width: 20px;
+  height: 20px;
+}
+
+.MuiSlider-markLabel {
+  top: -20px;
+}

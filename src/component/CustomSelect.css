@@ -1,0 +1,64 @@
+.customSelect {
+  position: relative;
+  width: fit-content;
+  display: flex;
+}
+
+.selectedOption {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  cursor: pointer;
+  color: #2D2D2D;
+}
+
+.arrowDown {
+  width: 16px;
+  height: 16px;
+}
+
+.customSelectMenu {
+  position: absolute;
+  border-radius: 12px;
+  border: 1px solid #D5D5D5;
+  background: #FDFCFC;
+  box-shadow: 0px 4px 8px 0px rgba(115, 115, 115, 0.05);
+  width: fit-content;
+  top: auto; /* Сначала убираем автоматические значения */
+  bottom: calc(100% + 2px); /* Вычисляем расположение меню вверху */
+  right: 0;
+  overflow: hidden;
+}
+
+.customSelectMenuItem {
+  padding: 8px;
+  background: #FDFCFC;
+  color: #2D2D2D;
+  text-align: center;
+  cursor: pointer;
+}
+
+.customSelectMenu > * {
+  border-bottom: 1px solid #D5D5D5;
+}
+
+.customSelectMenu > *:last-child {
+  border-bottom: none;
+}
+
+.customSelectMenuItemSelected {
+  padding: 8px;
+  background-color: #FCF9F9;
+  color: #737373;
+  text-align: center;
+}
+
+.customSelectLine {
+  height: 1px;
+  background: #D5D5D5;
+}
+
+.customSelectMenuItem:hover {
+  background-color: #f0f0f0;
+}
+  

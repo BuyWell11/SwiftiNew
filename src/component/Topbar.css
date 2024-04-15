@@ -1,0 +1,20 @@
+.topBarBtn{
+    color: #2D2D2D;
+}
+
+.noShadow{
+    box-shadow: none !important;
+}
+
+.topBar{
+    background-color: #FDFCFC;
+    border-bottom: 1px solid var(--30, #C6B6E3);
+    box-shadow: none;
+    justify-content: space-between;
+    z-index: 1300;
+}
+
+.logo{
+    width: 81px;
+    height: 32px;
+}

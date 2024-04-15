@@ -1,0 +1,38 @@
+.MuiDrawer-paper {
+    width: 40% !important;
+    box-sizing: border-box;
+    flex-shrink: 0;
+    }
+    
+@media (max-width: 600px) {
+    .MuiDrawer-paper {
+    width: 100% !important;
+    }
+}
+
+.sidebar{
+    color: #2D2D2D;
+    display: flex;
+    flex-direction: column;
+}
+
+.sidebar a{
+    color: #2D2D2D;
+    text-decoration: none;
+}
+
+.sidebar .MuiListItem-root{
+    height: fit-content;
+}
+
+.sidebar .MuiList-root{
+    margin-top: 24px;
+}
+
+.sidebarCloseIcon{
+    color: #2D2D2D;
+}
+
+.sidebarFoot{
+    margin-top: 100px;
+}
