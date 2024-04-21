@@ -2,11 +2,9 @@ import {Drawer, List, ListItem, ListItemText, Toolbar} from "@mui/material";
 import PropTypes from "prop-types";
 import "./Sidebar.css";
 import SidebarFooter from "./SidebarFooter";
-import LocalizationService from "../services/LocalizationService.js"
+import {translate} from "../services/LocalizationService.js";
 
 function Sidebar({isOpen, onClose}) {
-
-  const translate = LocalizationService.translate;
 
   const handleMenuItemClick = () => {
     onClose();

@@ -10,8 +10,6 @@ const userSlice = createSlice({
     changeLocalization(state, action) {
 
     },
-    getUserPosition(state, action) {
-    },
   },
 });
 

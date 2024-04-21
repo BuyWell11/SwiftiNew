@@ -2,7 +2,7 @@ import {Box, Slider} from "@mui/material";
 import DirectionsWalkIcon from '@mui/icons-material/DirectionsWalk';
 import "./CustomSlider.css"
 
-export default function CustomSlider(props) {
+export default function CustomSlider() {
   const marks = [
     {
       value: 0,

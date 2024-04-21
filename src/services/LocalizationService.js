@@ -11,11 +11,13 @@ class LocalizationService {
       if (Object.prototype.hasOwnProperty.call(currentObj, key)) {
         currentObj = currentObj[key];
       } else {
-        return null;
+        return path;
       }
     }
     return currentObj;
   }
 }
 
-export default LocalizationService;
+export function translate(path) {
+  return LocalizationService.translate(path);
+}

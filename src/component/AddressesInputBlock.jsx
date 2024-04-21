@@ -15,14 +15,19 @@ import DirectionsWalkIcon from '@mui/icons-material/DirectionsWalk';
 import HelpOutlineIcon from '@mui/icons-material/HelpOutline';
 import PlaceIcon from '@mui/icons-material/Place';
 import "./AddressesInputBlock.css"
-import {Fragment} from "react";
+import {Fragment, useCallback, useEffect} from "react";
+import useGeolocation from "../hooks/usePosition.js";
+import {translate} from "../services/LocalizationService.js";
+import FunctionUtils from "../utils/FunctionUtils.js";
+import RequestService from "../services/RequestService.js";
+import PropTypes from "prop-types";
 
 
-function AddressesInputBlock() {
+function AddressesInputBlock({handleSubmit}) {
 
   const HtmlTooltip = styled(({className, ...props}) => (
     <Tooltip {...props} classes={{popper: className}} enterTouchDelay={0}/>
-  ))(({theme}) => ({
+  ))(() => ({
     [`& .${tooltipClasses.tooltip}`]: {
       backgroundColor: '#FDFCFC',
       color: '#2D2D2D',
@@ -35,7 +40,7 @@ function AddressesInputBlock() {
     },
   }));
 
-  let test = ['Москва', 'kek'];
+  let test = ['Москва', 'Нижний Новгород'];
 
   const marks = [
     {
@@ -49,22 +54,62 @@ function AddressesInputBlock() {
     }
   ]
 
-  let fromOptions = ['grghr', 'trtwtwe']
-  let toOptions = ['frggw', 'tretrr']
-
-
   const formState = useFormik({
     initialValues: {
       city: test[0],
       time: 0,
       from: null,
+      fromText: '',
+      toText: '',
+      fromOptions: [],
+      toOptions: [],
       to: null,
       agree: false,
     },
     onSubmit: values => {
-      console.log(values)
+      const dto = {
+        from: values.from,
+        to: values.to,
+        radius: 300,
+      }
+      console.log(dto)
+      handleSubmit(dto)
     }
   })
+
+  const handleFromAddresses = useCallback(
+    FunctionUtils.debounce((address) => {
+      if (address === '') {
+        formState.setFieldValue('fromOptions', [])
+        return
+      }
+      RequestService.getAddresses(address).then((data) => {
+        formState.setFieldValue('fromOptions', data)
+      })
+    }, 1500),
+    []
+  );
+
+  const handleToAddresses = useCallback(
+    FunctionUtils.debounce((address) => {
+      if (address === '') {
+        formState.setFieldValue('toOptions', [])
+        return
+      }
+      RequestService.getAddresses(address).then((data) => {
+        formState.setFieldValue('toOptions', data)
+      })
+    }, 1500),
+    []
+  );
+
+  useEffect(() => {
+    handleFromAddresses(formState.values.fromText)
+  }, [formState.values.fromText, handleFromAddresses]);
+
+  useEffect(() => {
+    handleToAddresses(formState.values.toText)
+  }, [formState.values.toText, handleToAddresses]);
 
   return (
     <Box className="addressesInputBlock">
@@ -105,12 +150,16 @@ function AddressesInputBlock() {
             disablePortal
             disableListWrap
             value={formState.values.from}
+            inputValue={formState.values.fromText}
             id="from"
-            options={fromOptions}
+            options={formState.values.fromOptions}
+            getOptionLabel={(option) => option.label}
+            isOptionEqualToValue={(option, value) => option.id === value.id}
             sx={{width: 300}}
             onChange={(e, value) => {
               formState.setFieldValue('from', value)
             }}
+            onInputChange={(event, value) => formState.setFieldValue('fromText', value)}
             renderInput={(params) => <TextField {...params} label="Адрес"/>}
           />
         </Stack>
@@ -122,12 +171,16 @@ function AddressesInputBlock() {
             disablePortal
             disableListWrap
             value={formState.values.to}
+            inputValue={formState.values.toText}
             id="to"
-            options={toOptions}
+            options={formState.values.toOptions}
+            getOptionLabel={(option) => option.label}
+            isOptionEqualToValue={(option, value) => option.label === value.label}
             sx={{width: 300}}
             onChange={(e, value) => {
               formState.setFieldValue('to', value)
             }}
+            onInputChange={(event, value) => formState.setFieldValue('toText', value)}
             renderInput={(params) => <TextField {...params} label="Адрес"/>}
           />
         </Stack>
@@ -144,6 +197,10 @@ function AddressesInputBlock() {
       </form>
     </Box>
   )
+}
+
+AddressesInputBlock.propTypes = {
+  handleSubmit: PropTypes.func.isRequired,
 }
 
 export default AddressesInputBlock;

@@ -1,41 +1,42 @@
-.mainContentLogo{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    position: relative;
-    margin-top: 40px;
+.mainContentLogo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  position: relative;
+  margin-top: 40px;
+  margin-bottom: 40px;
 }
 
-.mainContentLogo img{
-    max-width: 100%;
-    max-height: 100%;
+.mainContentLogo img {
+  max-width: 100%;
+  max-height: 100%;
 }
 
-.mainContentLogoTextBox{
-    position: absolute;
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    text-align: center;
-    z-index: 1;
-    color: #2D2D2D;
+.mainContentLogoTextBox {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  z-index: 1;
+  color: #2D2D2D;
 }
 
-.mainContentLogoTextBox>span:first-child{
-    font-size: 24px;
-    font-weight: 700;
-    line-height: 28px;
-    text-align: center;
+.mainContentLogoTextBox > span:first-child {
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 28px;
+  text-align: center;
 }
 
-.mainContentLogoTextBox>span:last-child{
-    font-size: 16px;
-    font-weight: 500;
-    line-height: 16px;
-    text-align: center;
+.mainContentLogoTextBox > span:last-child {
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 16px;
+  text-align: center;
 
 }

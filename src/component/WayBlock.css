@@ -1,0 +1,86 @@
+.wayBlock {
+  border: 1px solid #C6B6E3;
+  border-radius: 16px;
+  height: fit-content;
+  width: 332px;
+  display: flex;
+  flex-direction: column;
+  padding: 12px;
+}
+
+.wayBlockSelected {
+  border: 1px solid #03AD52;
+  border-radius: 16px;
+  height: fit-content;
+  width: 328px;
+  display: flex;
+  flex-direction: column;
+  padding: 12px;
+}
+
+.priceBlock {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.priceBlock > :first-child {
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
+  align-items: center;
+}
+
+.wayBlockSeparator {
+  width: 100%;
+  height: 1px;
+  background-color: #C6B6E3;
+  margin-top: 4px;
+  margin-bottom: 12px;
+  border: none;
+}
+
+.wayBlockSeparatorSelected {
+  width: 100%;
+  height: 1px;
+  background-color: #03AD52;
+  margin-top: 4px;
+  margin-bottom: 12px;
+  border: none;
+}
+
+.timeBlock {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.travelTimeBlock {
+  display: flex;
+  flex-direction: row;
+  gap: 18px;
+  justify-content: center;
+  align-items: center;
+}
+
+.priceBlock span {
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 100%;
+  font-family: "Montserrat", serif;
+  color: #2D2D2D;
+}
+
+.travelTimeBlock span {
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 100%;
+  font-family: "Montserrat", serif;
+  color: #2D2D2D;
+}
+
+.MuiButtonBase-root {
+  border-radius: 16px !important;
+}

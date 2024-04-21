@@ -1,0 +1,14 @@
+.linkButton {
+  padding: 24px 37px;
+  width: 160px;
+  height: 68px;
+}
+
+.iconsBox {
+  display: flex;
+  gap: 12px;
+}
+
+.iconsBox svg {
+  color: #2D2D2D;
+}
