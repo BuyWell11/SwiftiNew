@@ -21,7 +21,7 @@ function Sidebar({isOpen, onClose}) {
       <List>
         <ListItem>
           <a href="#section1" onClick={handleMenuItemClick}>
-            <ListItemText primary="О сервисе"/>
+            <ListItemText primary={translate('basement.menu.aboutUsPage')}/>
           </a>
         </ListItem>
         <ListItem>
@@ -31,7 +31,7 @@ function Sidebar({isOpen, onClose}) {
         </ListItem>
         <ListItem>
           <a href="#section3" onClick={handleMenuItemClick}>
-            <ListItemText primary="Контакты"/>
+            <ListItemText primary={translate('basement.menu.contacts')}/>
           </a>
         </ListItem>
       </List>

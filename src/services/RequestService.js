@@ -21,7 +21,7 @@ class RequestService {
       })
       .catch((error) => {
         console.error('Error occurred while fetching addresses:', error);
-        return []; // Возвращаем какое-то значение, указывающее на ошибку
+        return [];
       });
   }
 
@@ -41,7 +41,7 @@ class RequestService {
       })
       .catch((error) => {
         console.error('Error occurred while fetching addresses:', error);
-        return []; // Возвращаем какое-то значение, указывающее на ошибку
+        return [];
       });
   }
 
@@ -61,8 +61,38 @@ class RequestService {
       })
       .catch((error) => {
         console.error('Error occurred while fetching addresses:', error);
-        return []; // Возвращаем какое-то значение, указывающее на ошибку
+        return [];
       });
+  }
+
+  static getLanguages() {
+    const path = BACKEND + '/data/?type=languages';
+
+    return fetch(path, {
+      method: 'GET',
+      headers: RequestService.HEADERS,
+    })
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        return response.json();
+      })
+  }
+
+  static getCities() {
+    const path = BACKEND + '/data/?type=cities';
+
+    return fetch(path, {
+      method: 'GET',
+      headers: RequestService.HEADERS,
+    })
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        return response.json();
+      })
   }
 }
 

@@ -1,12 +1,20 @@
 import "./App.css";
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import Sidebar from "./component/Sidebar";
 import Topbar from "./component/Topbar";
 import MainContent from "./component/MainContent";
 import {createTheme, ThemeProvider} from "@mui/material";
+import {useDispatch} from "react-redux";
+import {fetchLanguages} from "./redux/backendDataSlice.js"
 
 function App() {
   const [isSidebarOpen, setSidebarOpen] = useState(false);
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(fetchLanguages())
+  }, [dispatch]);
 
   const theme = createTheme({
     palette: {

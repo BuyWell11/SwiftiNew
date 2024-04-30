@@ -1,19 +1,28 @@
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import {ClickAwayListener} from "@mui/material";
 import ArrowIcon from "../img/DownArrow.svg";
 import PropTypes from "prop-types";
 import "./CustomSelect.css";
+import {useSelector} from "react-redux";
 
 const CustomSelect = ({options, handleClick}) => {
+  const userLanguage = useSelector(state => state.user.localization);
   const [isOpen, setIsOpen] = useState(false);
-  const [selectedOption, setSelectedOption] = useState(options[0]);
+  const [selectedOption, setSelectedOption] = useState(null);
+
+  useEffect(() => {
+    const foundOption = options.find(option => option.value === userLanguage);
+    if (foundOption) {
+      setSelectedOption(foundOption.label)
+    }
+  }, [options, userLanguage]);
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
   };
 
   const handleOptionClick = (option) => {
-    setSelectedOption(option);
+    setSelectedOption(option.label);
     handleClick(option)
     setIsOpen(false);
   };
@@ -35,13 +44,13 @@ const CustomSelect = ({options, handleClick}) => {
               <div
                 key={index}
                 className={
-                  option === selectedOption
+                  option.label === selectedOption
                     ? "customSelectMenuItemSelected"
                     : "customSelectMenuItem"
                 }
                 onClick={() => handleOptionClick(option)}
               >
-                {option}
+                {option.label}
               </div>
             ))}
           </div>
@@ -51,7 +60,7 @@ const CustomSelect = ({options, handleClick}) => {
   );
 };
 CustomSelect.propTypes = {
-  options: PropTypes.arrayOf(PropTypes.string).isRequired,
+  options: PropTypes.arrayOf(PropTypes.object).isRequired,
   handleClick: PropTypes.func.isRequired,
 };
 
