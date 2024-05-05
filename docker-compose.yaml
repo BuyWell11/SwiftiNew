@@ -2,12 +2,14 @@ version: '3'
 
 services:
   frontend:
-    build: ./frontend
+    build:
+      context: ./frontend
     container_name: frontend
     restart: always
 
   backend:
-    build: ./backend
+    build:
+      context: ./backend
     container_name: backend
     restart: always
 
