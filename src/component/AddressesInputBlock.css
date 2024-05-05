@@ -68,7 +68,7 @@
   width: 237px;
   height: 48px;
   text-transform: none !important;
-  font-weight: 500;
-  font-size: 16px;
-  line-height: 100%;
+  font-weight: 500 !important;
+  font-size: 16px !important;
+  line-height: 100% !important;
 }

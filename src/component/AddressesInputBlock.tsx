@@ -19,17 +19,27 @@ import {Fragment, useCallback, useEffect} from "react";
 import FunctionUtils from "../utils/FunctionUtils.js";
 import RequestService from "../services/RequestService.js";
 import {RouteDTO} from "../dto/RouteDTO";
+//import * as Yup from 'yup';
+import {useAppSelector} from "../hooks/reduxHooks";
+import {translate} from "../services/LocalizationService";
+import {CustomSelectOption} from "../models/CustomSelectOption";
+import {AddressDTO} from "../dto/AddressDTO";
 
 interface Props {
     handleSubmit: Function;
 }
 
 interface HtmlTooltipProps extends TooltipProps {
-    className: string;
+    className?: string;
 }
 
 function AddressesInputBlock({handleSubmit}: Props) {
 
+    const cities = useAppSelector(state => state.backendData.cities);
+
+    const translatedCities = cities.map((city) => {
+        return {label: translate(`mainPage.searchField.city.${city.label}`), value: city.value}
+    })
 
     const HtmlTooltip = styled(({className, ...props}: HtmlTooltipProps) => (
         <Tooltip {...props} classes={{popper: className}} enterTouchDelay={0}/>
@@ -46,8 +56,6 @@ function AddressesInputBlock({handleSubmit}: Props) {
         },
     }));
 
-    let test = ['Москва', 'Нижний Новгород'];
-
     const marks = [
         {
             value: 0,
@@ -60,36 +68,51 @@ function AddressesInputBlock({handleSubmit}: Props) {
         }
     ]
 
+    type State = {
+        city: CustomSelectOption,
+        time: number,
+        from: AddressDTO | null,
+        fromText: string,
+        toText: string,
+        fromOptions: AddressDTO[],
+        toOptions: AddressDTO[],
+        to: AddressDTO | null,
+        agree: boolean,
+    }
+
+    const initialValue: State = {
+        city: translatedCities[0],
+        time: 0,
+        from: null,
+        fromText: "",
+        toText: "",
+        fromOptions: [],
+        toOptions: [],
+        to: null,
+        agree: false,
+    }
+
     const formState = useFormik({
-        initialValues: {
-            city: test[0],
-            time: 0,
-            from: null,
-            fromText: '',
-            toText: '',
-            fromOptions: [],
-            toOptions: [],
-            to: null,
-            agree: false,
-        },
+        initialValues: initialValue,
         onSubmit: values => {
             const dto: RouteDTO = {
-                startPoint: values.from,
-                endPoint: values.to,
-                walkingTime: values.time
+                startPoint: `${values.from?.latitude},${values.from?.longitude}`,
+                endPoint: `${values.to?.latitude},${values.to?.longitude}`,
+                walkingTime: values.time,
+                city: values.city.value,
             }
-            console.log(dto)
+            console.log(values)
             handleSubmit(dto)
         }
     })
 
     const handleFromAddresses = useCallback(
-        FunctionUtils.debounce((address) => {
+        FunctionUtils.debounce((address, city) => {
             if (address === '') {
                 formState.setFieldValue('fromOptions', [])
                 return
             }
-            RequestService.getAddresses(address).then((data) => {
+            RequestService.getAddresses(address, city).then((data) => {
                 formState.setFieldValue('fromOptions', data)
             })
         }, 1500),
@@ -97,12 +120,12 @@ function AddressesInputBlock({handleSubmit}: Props) {
     );
 
     const handleToAddresses = useCallback(
-        FunctionUtils.debounce((address) => {
+        FunctionUtils.debounce((address, city) => {
             if (address === '') {
                 formState.setFieldValue('toOptions', [])
                 return
             }
-            RequestService.getAddresses(address).then((data) => {
+            RequestService.getAddresses(address, city).then((data) => {
                 formState.setFieldValue('toOptions', data)
             })
         }, 1500),
@@ -110,22 +133,28 @@ function AddressesInputBlock({handleSubmit}: Props) {
     );
 
     useEffect(() => {
-        handleFromAddresses(formState.values.fromText)
-    }, [formState.values.fromText, handleFromAddresses]);
+        handleFromAddresses(formState.values.fromText, formState.values.city)
+    }, [formState.values.city, formState.values.fromText, handleFromAddresses]);
 
     useEffect(() => {
-        handleToAddresses(formState.values.toText)
-    }, [formState.values.toText, handleToAddresses]);
+        handleToAddresses(formState.values.toText, formState.values.city)
+    }, [formState.values.city, formState.values.toText, handleToAddresses]);
+
+    useEffect(() => {
+        formState.setFieldValue('city', translatedCities[0]);
+        console.log(formState.values.city)
+    }, [cities])
 
     return (
         <Box className="addressesInputBlock">
             <form onSubmit={formState.handleSubmit} className="addressInputBlockForm">
                 <Stack direction="row" spacing={0.5}>
                     <PlaceIcon sx={{color: '#8D6EC8'}}/>
-                    <CustomSelect options={test} handleClick={(text) => formState.values.city = text}/>
+                    <CustomSelect options={translatedCities} selectedOption={formState.values.city}
+                                  handleClick={(city: CustomSelectOption) => formState.setFieldValue('city', city)}/>
                 </Stack>
                 <hr className="separator"/>
-                <span className="citySelectBlock">Выбрать маршрут</span>
+                <span className="citySelectBlock">{translate("mainPage.searchField.title")}</span>
                 <Stack direction="row" spacing={1} className="customSlider">
                     <DirectionsWalkIcon className="sliderIcon"/>
                     <Slider
@@ -142,7 +171,7 @@ function AddressesInputBlock({handleSubmit}: Props) {
                     <HtmlTooltip
                         title={
                             <Fragment>
-                                <span>Укажите сколько минут вы готовы идти пешком</span>
+                                <span>{translate("mainPage.searchField.tooltip")}</span>
                             </Fragment>
                         }
                     >
@@ -150,9 +179,9 @@ function AddressesInputBlock({handleSubmit}: Props) {
                     </HtmlTooltip>
                 </Stack>
                 <Stack direction="column" spacing={1.5} className="addressTextfieldBlock">
-                    <span className="textfieldLabel">Откуда</span>
+                    <span className="textfieldLabel">{translate("mainPage.searchField.from")}</span>
                     <Autocomplete
-                        name="from"
+                        className="addressTextfield"
                         disablePortal
                         disableListWrap
                         value={formState.values.from}
@@ -166,14 +195,14 @@ function AddressesInputBlock({handleSubmit}: Props) {
                             formState.setFieldValue('from', value)
                         }}
                         onInputChange={(event, value) => formState.setFieldValue('fromText', value)}
-                        renderInput={(params) => <TextField {...params} label="Адрес"/>}
+                        renderInput={(params) => <TextField {...params}
+                                                            label={translate("mainPage.searchField.placeHolder")}/>}
                     />
                 </Stack>
                 <Stack direction="column" spacing={1.5} className="addressTextfieldBlock">
-                    <span className="textfieldLabel">Куда</span>
+                    <span className="textfieldLabel">{translate("mainPage.searchField.to")}</span>
                     <Autocomplete
                         className="addressTextfield"
-                        name="to"
                         disablePortal
                         disableListWrap
                         value={formState.values.to}
@@ -187,7 +216,8 @@ function AddressesInputBlock({handleSubmit}: Props) {
                             formState.setFieldValue('to', value)
                         }}
                         onInputChange={(event, value) => formState.setFieldValue('toText', value)}
-                        renderInput={(params) => <TextField {...params} label="Адрес"/>}
+                        renderInput={(params) => <TextField {...params}
+                                                            label={translate("mainPage.searchField.placeHolder")}/>}
                     />
                 </Stack>
                 <Stack direction="row" spacing={1} className="agreeBlock">
@@ -195,11 +225,10 @@ function AddressesInputBlock({handleSubmit}: Props) {
                         name="agree"
                         checked={formState.values.agree}
                         onChange={formState.handleChange}/>
-                    <span>Согласен с Пользовательским соглашением</span>
+                    <span>{translate("mainPage.searchField.termOfUseAcception")}</span>
                 </Stack>
                 <Button variant="contained" className="addressesInputButton" type="submit"
-                        disabled={!formState.values.agree || !formState.values.from || !formState.values.to}>Подобрать
-                    маршрут</Button>
+                        disabled={!formState.values.agree || !formState.values.from || !formState.values.to}>{translate("mainPage.searchField.findRoute")}</Button>
             </form>
         </Box>
     )

@@ -4,16 +4,18 @@ import Sidebar from "./component/Sidebar";
 import Topbar from "./component/Topbar";
 import MainContent from "./component/MainContent";
 import {createTheme, ThemeProvider} from "@mui/material";
-import {fetchLanguages} from "./redux/backendDataSlice.js"
-import {useAppDispatch} from "./hooks/reduxHooks";
+import {fetchLanguages, fetchCities} from "./redux/backendDataSlice.js"
+import {useAppDispatch, useAppSelector} from "./hooks/reduxHooks";
 
 function App() {
+    const localization = useAppSelector(state => state.user.localization);
     const [isSidebarOpen, setSidebarOpen] = useState<boolean>(false);
 
     const dispatch = useAppDispatch();
 
     useEffect(() => {
         dispatch(fetchLanguages())
+        dispatch(fetchCities())
     }, [dispatch]);
 
     const theme = createTheme({

@@ -1,4 +1,4 @@
-import {createAsyncThunk, createSlice, PayloadAction} from "@reduxjs/toolkit";
+import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
 import RequestService from "../services/RequestService.js";
 import {CustomSelectOption} from "../models/CustomSelectOption";
 
@@ -21,6 +21,19 @@ export const fetchLanguages = createAsyncThunk<CustomSelectOption[], undefined, 
     }
 )
 
+export const fetchCities = createAsyncThunk<CustomSelectOption[], undefined, { rejectValue: string }>(
+    'backendData/fetchCities',
+    async (_, {rejectWithValue}) => {
+        try {
+            return await RequestService.getCities();
+        } catch (error: any) {
+            console.error('Error occurred while fetching cities:', error);
+            return rejectWithValue(error);
+        }
+    }
+)
+
+
 const initialState: backendDataState = {
     cities: [],
     languages: [],
@@ -40,10 +53,21 @@ const backendDataSlice = createSlice({
             })
             .addCase(fetchLanguages.fulfilled, (state, action) => {
                 state.loading = false;
-                console.log(action.payload)
                 state.languages = action.payload;
             })
             .addCase(fetchLanguages.rejected, (state, action) => {
+                state.loading = false;
+                state.error = action.payload;
+            })
+            .addCase(fetchCities.pending, (state) => {
+                state.loading = true;
+                state.error = null;
+            })
+            .addCase(fetchCities.fulfilled, (state, action) => {
+                state.loading = false;
+                state.cities = action.payload;
+            })
+            .addCase(fetchCities.rejected, (state, action) => {
                 state.loading = false;
                 state.error = action.payload;
             });

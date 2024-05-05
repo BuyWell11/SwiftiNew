@@ -1,6 +1,7 @@
 import {Box, ButtonBase} from "@mui/material";
 import LocalTaxiIcon from '@mui/icons-material/LocalTaxi';
 import {Way} from "../models/Way";
+import {translate} from "../services/LocalizationService";
 
 interface Props {
     selected: boolean;
@@ -14,16 +15,16 @@ function DefaultWayBlock({selected, handleClick, wayData}: Props) {
         <ButtonBase onClick={handleClick}>
             <Box className={selected ? "wayBlockSelected" : "wayBlock"}>
                 <Box className="priceBlock">
-                    <span>Базовый</span>
+                    <span>{translate("mainPage.resultField.baseResult.title")}</span>
                     <Box>
-                        <span>От&nbsp;{wayData.price}&nbsp;р</span>
+                        <span>{translate("mainPage.resultField.otherUnits.from")}&nbsp;{wayData.price}&nbsp;{translate("mainPage.resultField.otherUnits.currency")}</span>
                     </Box>
                 </Box>
                 <hr className={selected ? "wayBlockSeparatorSelected" : "wayBlockSeparator"}/>
                 <Box className="travelTimeBlock">
                     <Box className="timeBlock">
                         <LocalTaxiIcon/>
-                        <span>{Math.round(wayData.taxiTime / 60)} мин</span>
+                        <span>{wayData.taxiTime} {translate("mainPage.resultField.otherUnits.time")}</span>
                     </Box>
                 </Box>
             </Box>

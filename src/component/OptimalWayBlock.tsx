@@ -5,6 +5,7 @@ import DirectionsWalkIcon from '@mui/icons-material/DirectionsWalk';
 import LocalTaxiIcon from '@mui/icons-material/LocalTaxi';
 import './WayBlock.css'
 import {Way} from "../models/Way";
+import {translate} from "../services/LocalizationService";
 
 interface Props {
     selected: boolean;
@@ -19,32 +20,28 @@ function OptimalWayBlock({selected, handleClick, wayData}: Props) {
                 <Box className="priceBlock">
                     <Box>
                         <ThumbUpOffAltIcon sx={{color: "#03AD52"}}/>
-                        <span>Оптимальный</span>
+                        <span>{translate("mainPage.resultField.optimalResult.title")}</span>
                     </Box>
                     <Box>
-                        <span>От&nbsp;{wayData.price}&nbsp;р</span>
+                        <span>{translate("mainPage.resultField.otherUnits.from")}&nbsp;{wayData.price}&nbsp;{translate("mainPage.resultField.otherUnits.currency")}`</span>
                     </Box>
                 </Box>
                 <hr className={selected ? "wayBlockSeparatorSelected" : "wayBlockSeparator"}/>
                 <Box className="travelTimeBlock">
-                    {wayData.walkingAtStartTime && (
-                        <Box className="timeBlock">
-                            <DirectionsWalkIcon/>
-                            <span>{Math.round(wayData.walkingAtStartTime / 60)} мин</span>
-                        </Box>
-                    )}
+                    <Box className="timeBlock">
+                        <DirectionsWalkIcon/>
+                        <span>{wayData.walkingAtStartTime} {translate("mainPage.resultField.otherUnits.time")}</span>
+                    </Box>
                     <ArrowRightAltIcon/>
                     <Box className="timeBlock">
                         <LocalTaxiIcon/>
-                        <span>{Math.round(wayData.taxiTime / 60)} мин</span>
+                        <span>{wayData.taxiTime} {translate("mainPage.resultField.otherUnits.time")}</span>
                     </Box>
                     <ArrowRightAltIcon/>
-                    {wayData.walkingAtEndTime && (
-                        <Box className="timeBlock">
-                            <DirectionsWalkIcon/>
-                            <span>{Math.round(wayData.walkingAtEndTime / 60)} мин</span>
-                        </Box>
-                    )}
+                    <Box className="timeBlock">
+                        <DirectionsWalkIcon/>
+                        <span>{wayData.walkingAtEndTime} {translate("mainPage.resultField.otherUnits.time")}</span>
+                    </Box>
                 </Box>
             </Box>
         </ButtonBase>

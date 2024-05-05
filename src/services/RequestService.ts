@@ -1,5 +1,9 @@
 import {BACKEND} from "../vars";
 import {RouteDTO} from "../dto/RouteDTO";
+import {Way} from "../models/Way";
+import {CustomSelectOption} from "../models/CustomSelectOption";
+import {AddressDTO} from "../dto/AddressDTO";
+import {WaysDTO} from "../dto/WaysDTO";
 
 class RequestService {
 
@@ -7,8 +11,8 @@ class RequestService {
         'Content-Type': 'application/json;charset=utf-8'
     }
 
-    static getAddresses(address: string, maxAddress = 4, city: string) {
-        const path = BACKEND + `/addresses?address=${address}&addressesNumber=${maxAddress}&city=${city}`;
+    static getAddresses(address: string, city: CustomSelectOption, maxAddress = 4,): Promise<AddressDTO[]> {
+        const path = BACKEND + `/addresses?address=${address}&addressesNumber=${maxAddress}&city=${city.value}`;
 
         return fetch(path, {
             method: 'GET',
@@ -26,10 +30,9 @@ class RequestService {
             });
     }
 
-    static getRoute(dto: RouteDTO) {
+    static getRoute(dto: RouteDTO): Promise<WaysDTO> {
         const path = BACKEND +
-            `/optimal-route/?startPoint=${dto.startPoint}&endPoint=${dto.endPoint}}&walkingTime=${dto.walkingTime}`;
-
+            `/taxi/?startPoint=${dto.startPoint}&endPoint=${dto.endPoint}&walkingTime=${dto.walkingTime}&city=${dto.city}`;
         return fetch(path, {
             method: 'GET',
             headers: RequestService.HEADERS,
@@ -42,12 +45,12 @@ class RequestService {
             })
             .catch((error) => {
                 console.error('Error occurred while fetching addresses:', error);
-                return [];
+                return null;
             });
     }
 
 
-    static getLanguages() {
+    static getLanguages(): Promise<CustomSelectOption[]> {
         const path = BACKEND + '/data/languages';
 
         return fetch(path, {
@@ -62,7 +65,7 @@ class RequestService {
             })
     }
 
-    static getCities() {
+    static getCities(): Promise<CustomSelectOption[]> {
         const path = BACKEND + '/data/cities';
 
         return fetch(path, {

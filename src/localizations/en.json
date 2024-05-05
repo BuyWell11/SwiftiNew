@@ -3,11 +3,11 @@
     "title": "Сервис поиска оптимального маршрута",
     "subtitle": "Экономим на такси",
     "searchField": {
-      "title": "Выбрать маршрут",
+      "title": "Choose Way",
       "placeHolder": "Адрес",
       "city": {
-        "moscow": "Москва",
-        "nizhnyNovgorod": "Нижний Новгород"
+        "moscow": "Moscow",
+        "nizhnyNovgorod": "Nijniy Novgorod"
       },
       "myLocation": "Моё местоположение",
       "from": "Откуда",
@@ -143,13 +143,13 @@
   },
   "basement": {
     "language": {
-      "russian": "Русский",
-      "english": "Английский"
+      "russian": "Russian",
+      "english": "English"
     },
     "menu": {
-      "aboutUsPage": "О сервисе",
-      "howItWorksPage": "Как это работает?",
-      "contacts": "Контакты"
+      "aboutUsPage": "About us",
+      "howItWorksPage": "How it's works?",
+      "contacts": "Contacts"
     },
     "documents": {
       "userGuide": "Руководство пользователя",

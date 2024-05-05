@@ -17,10 +17,11 @@ interface Props {
 
 function SidebarFooter({className}: Props) {
     const languages = useAppSelector(state => state.backendData.languages);
+    const localization = useAppSelector(state => state.user.localization);
     const dispatch = useAppDispatch();
-        
+
     const translatedLanguages = languages.map((language) => {
-        return {label: translate(`basement.language.${language}`), value: 'ru-RU'}
+        return {label: translate(`basement.language.${language.label}`), value: language.value}
     })
 
     const handleChangeLanguage = (option: CustomSelectOption) => {
@@ -38,7 +39,9 @@ function SidebarFooter({className}: Props) {
                         <IconLink image={Telegram} link=""/>
                         <IconLink image={DonateIcon} link=""/>
                     </Box>
-                    <CustomSelect options={translatedLanguages} handleClick={handleChangeLanguage}/>
+                    <CustomSelect options={translatedLanguages}
+                                  selectedOption={translatedLanguages.find((language) => language.value === localization.value) || localization}
+                                  handleClick={handleChangeLanguage}/>
                 </Box>
             </Toolbar>
         </AppBar>
