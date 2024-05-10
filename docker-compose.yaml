@@ -1,17 +1,21 @@
-version: '3'
-
 services:
   frontend:
     build:
       context: ./frontend
     container_name: frontend
     restart: always
+    networks:
+      net:
+        - ipv4_address: 192.168.240.2
 
   backend:
     build:
       context: ./backend
     container_name: backend
     restart: always
+    networks:
+      net:
+        - ipv4_address: 192.168.240.3
 
   nginx:
     build:
@@ -23,3 +27,13 @@ services:
       - frontend
       - backend
     restart: always
+    networks:
+      net:
+        - ipv4_address: 192.168.240.4
+
+networks:
+  net:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 192.168.240.0/24
