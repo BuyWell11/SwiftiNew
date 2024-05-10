@@ -1,3 +1,5 @@
+version: '3.8'
+
 services:
   frontend:
     build:
@@ -5,8 +7,8 @@ services:
     container_name: frontend
     restart: always
     networks:
-      net:
-        - ipv4_address: 192.168.240.2
+      swifti_network:
+        ipv4_address: 192.168.240.2
 
   backend:
     build:
@@ -14,8 +16,8 @@ services:
     container_name: backend
     restart: always
     networks:
-      net:
-        - ipv4_address: 192.168.240.3
+      swifti_network:
+        ipv4_address: 192.168.240.3
 
   nginx:
     build:
@@ -28,11 +30,11 @@ services:
       - backend
     restart: always
     networks:
-      net:
-        - ipv4_address: 192.168.240.4
+      swifti_network:
+        ipv4_address: 192.168.240.4
 
 networks:
-  net:
+  swifti_network:
     driver: bridge
     ipam:
       config:
