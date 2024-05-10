@@ -33,7 +33,7 @@ services:
 
 networks:
   swifti_network:
-    driver: host
+    driver: bridge
     ipam:
       config:
         - subnet: 192.168.240.0/24
