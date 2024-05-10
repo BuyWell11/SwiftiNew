@@ -3,6 +3,8 @@ services:
     build:
       context: ./frontend
     container_name: frontend
+    environment:
+      - NGINX_PORT=8080
     restart: always
     networks:
       swifti_network:
