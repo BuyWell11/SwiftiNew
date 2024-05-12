@@ -1,0 +1,44 @@
+.contactsBlock {
+  width: 360px;
+  height: fit-content;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  margin-top: 80px;
+}
+
+.contactsBlockContent {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #C6B6E3;
+  border-radius: 20px;
+  width: 328px;
+  height: fit-content;
+  padding: 16px;
+  gap: 36px;
+}
+
+.contactsBlockContent img {
+  height: 20px;
+  width: 20px;
+}
+
+.contactsBlockContent a {
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 114%;
+  color: #2D2D2D;
+}
+
+.contactsBlockContent > .MuiBox-root {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.contactsBlockContent > .MuiBox-root > .MuiBox-root {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
+}

@@ -2,10 +2,12 @@ import "./App.css";
 import {useEffect, useState} from "react";
 import Sidebar from "./component/Sidebar";
 import Topbar from "./component/Topbar";
-import MainContent from "./component/MainContent";
-import {createTheme, ThemeProvider} from "@mui/material";
+import MainPage from "./pages/MainPage";
+import {Box, createTheme, ThemeProvider} from "@mui/material";
 import {fetchLanguages, fetchCities} from "./redux/backendDataSlice.js"
 import {useAppDispatch, useAppSelector} from "./hooks/reduxHooks";
+import Footer from "./component/Footer";
+import {Outlet} from "react-router-dom";
 
 function App() {
     const localization = useAppSelector(state => state.user.localization);
@@ -48,16 +50,17 @@ function App() {
     };
 
     return (
-        <>
+        <Box className="app">
             <ThemeProvider theme={theme}>
                 <Topbar
                     onMenuButtonClick={handleMenuButtonClick}
                     isSidebarOpen={isSidebarOpen}
                 />
                 <Sidebar isOpen={isSidebarOpen} onClose={closeSidebar}/>
-                <MainContent/>
+                <Outlet/>
+                <Footer/>
             </ThemeProvider>
-        </>
+        </Box>
     );
 }
 

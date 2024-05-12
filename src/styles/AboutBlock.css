@@ -1,0 +1,38 @@
+.aboutBlock {
+  width: 360px;
+  height: fit-content;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  margin-top: 80px;
+}
+
+.aboutBlockContent {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.aboutBlockContent span {
+  font-weight: 500;
+  font-size: 15px;
+  line-height: 133%;
+  color: #2D2D2D;
+}
+
+.aboutBlockContent .MuiBox-root:last-child {
+  margin-left: 24px;
+}
+
+.aboutBlockContentAdvantages {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.aboutBlockContentAdvantages .MuiBox-root span {
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 100%;
+  color: #8D6EC8;
+}

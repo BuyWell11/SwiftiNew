@@ -7,27 +7,32 @@ import LinkButton from "./LinkButton.js";
 import ArrowRightAltIcon from "@mui/icons-material/ArrowRightAlt.js";
 import LocalTaxiIcon from "@mui/icons-material/LocalTaxi.js";
 import DirectionsWalkIcon from "@mui/icons-material/DirectionsWalk.js";
-import "./WaySelector.css"
+import "../styles/WaySelector.css"
 import {RouteDTO} from "../dto/RouteDTO";
 import {Way} from "../models/Way";
 import AddressesInputBlock from "./AddressesInputBlock";
 import {translate} from "../services/LocalizationService";
+import Loader from "./Loader";
 
 function WaySelector() {
     const [optimalWay, setOptimalWay] = useState<Way | null>(null)
     const [defaultWay, setDefaultWay] = useState<Way | null>(null)
     const [isOptimalSelected, setIsOptimalSelected] = useState(true)
+    const [isLoading, setIsLoading] = useState(false)
 
     const handleSubmit = useCallback((dto: RouteDTO) => {
+        setIsLoading(true)
         RequestService.getRoute(dto).then(data => {
             setOptimalWay(data.optimal);
             setDefaultWay(data.default);
         })
+        setIsLoading(false)
     }, [])
 
     return (
         <Stack direction="column" spacing={2}>
             <AddressesInputBlock handleSubmit={handleSubmit}/>
+            {isLoading && <Loader/>}
             {optimalWay && defaultWay && (
                 <>
                     <OptimalWayBlock handleClick={() => {

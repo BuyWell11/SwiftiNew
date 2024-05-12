@@ -1,5 +1,5 @@
 import {Drawer, List, ListItem, ListItemText, Toolbar} from "@mui/material";
-import "./Sidebar.css";
+import "../styles/Sidebar.css";
 import SidebarFooter from "./SidebarFooter.js";
 import {translate} from "../services/LocalizationService.js";
 

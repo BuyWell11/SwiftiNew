@@ -1,145 +1,146 @@
 {
   "mainPage": {
-    "title": "Сервис поиска оптимального маршрута",
-    "subtitle": "Экономим на такси",
+    "title": "Optimal route search&nbsp;service",
+    "subtitle": "Save on taxi",
     "searchField": {
-      "title": "Choose Way",
-      "placeHolder": "Адрес",
+      "title": "Select route information",
+      "placeHolder": "Address",
       "city": {
         "moscow": "Moscow",
-        "nizhnyNovgorod": "Nijniy Novgorod"
+        "nizhnyNovgorod": "Nizhny Novgorod"
       },
-      "myLocation": "Моё местоположение",
-      "from": "Откуда",
-      "to": "Куда",
-      "termOfUseAcception": "Согласен с Пользовательским соглашением",
-      "findRoute": "Подобрать маршрут",
-      "tooltip": "Укажите сколько минут вы готовы идти пешком"
+      "myLocation": "My location",
+      "from": "From",
+      "to": "To",
+      "termOfUseAcception": "Agree to Terms and Conditions",
+      "findRoute": "Find route",
+      "tooltip": "How many minutes are you ready to walk?"
     },
     "resultField": {
       "optimalResult": {
-        "title": "Оптимальный"
+        "title": "Optimal"
       },
       "baseResult": {
-        "title": "Базовый"
+        "title": "Default"
       },
       "otherUnits": {
-        "from": "от",
+        "from": "from",
         "currency": "₽",
-        "time": "мин"
+        "time": "min"
       },
-      "orderTaxi": "Заказать такси"
+      "orderTaxi": "Order a taxi"
     },
     "aboutUs": {
-      "title": "О сервисе",
+      "title": "About us",
       "content": {
-        "firstParagraf": "Swifti — сервис, позволяющий выбрать наиболее экономичный вариант перемещения по городу на такси.",
-        "secondParagraf": "Мы достигаем этого путём поиска оптимального маршрута. Наша цель — забота о Вашем бюджете."
+        "firstParagraf": "Swifti is a service that allows you to choose the most economical way to travel around the city by taxi.",
+        "secondParagraf": "We achieve this by searching for the optimal route. Our goal is to take care of your budget."
       },
       "advantages": {
+        "title": "Swifti advantages",
         "economy": {
-          "title": "Экономия",
-          "content": "До 70% экономии бюджета с помощью Swifti"
+          "title": "Savings",
+          "content": "Up to 70% budget savings with Swifti"
         },
         "ecoFriendliness": {
-          "title": "Экологичность",
-          "content": "Более зеленые маршруты с меньшим вредом для окружающей среды"
+          "title": "Eco-friendly",
+          "content": "Greener routes with less impact on the environment"
         },
         "activity": {
-          "title": "Активность",
-          "content": "Помогаем в течение дня быть активнее"
+          "title": "Activity",
+          "content": "We help you to be more active during the day"
         }
       }
     },
     "howItWorks": {
-      "title": "Как это работает?"
+      "title": "How does it work?"
     },
     "contacts": {
-      "title": "Контакты",
+      "title": "Contacts",
       "contactUs": {
-        "content": "Если у вас остались вопросы о сервисе или есть предложения об его улучшении, напишите нам удобным для вас способом:",
+        "content": "If you still have questions about the service or you have improvement suggestions, contact us in a suitable way:",
         "email": "swiftitraveler@gmail.com",
         "telegram": "@swifti_app"
       },
       "donateUs": {
-        "content": "Наш сервис абсолютно бесплатный. Мы существуем и развиваемся благодаря вашей поддержке. Поддержать проект:",
+        "content": "Our service is absolutely free. We exist and develop thanks to your support. To support the project:",
         "link": "https://socprofile.com/swifti/"
       }
     },
     "helpField": {
-      "title": "Нужна помощь?",
-      "subtitle": "Напишите нам"
+      "title": "Do you need help?",
+      "subtitle": "Contact us"
     }
   },
   "menu": {
-    "mainPage": "Главная",
-    "aboutUsPage": "О нас",
-    "howItWorksPage": "Как это работает?"
+    "mainPage": "Home",
+    "aboutUsPage": "About us",
+    "howItWorksPage": "How does it work?"
   },
   "userGuidePage": {
-    "title": "Инструкция пользования сервисом",
-    "subtitle": "Для пользования сервисом у пользователя должно быть установлено приложение Яндекс.Go.",
+    "title": "User's Guide",
+    "subtitle": "To use the service, the user must have the Yandex.Go application installed.",
     "content": {
-      "firstPart": "Выберите адрес посадки и адрес высадки из выпадающего списка. Если не можете найти нужный адрес, не волнуйтесь, просто отредактируйте запрос, начав его со слов «ул»., «проспект», «проезд» и т.п.",
-      "secondPart": "После выбора адресов нажмите на кнопку «оптимизировать» и приготовтесь сэкономить средства, нажитые непосильным трудом",
+      "firstPart": "Select the pick-up and drop-off address from the drop-down list. If you can't find the address you need, don't worry, just edit the query, starting with the words «street», «avenue», «passage», etc.",
+      "secondPart": "After selecting the addresses, click on the «optimize» button and get ready to save money earned through backbreaking work",
       "thirdPart": {
-        "firstPart": "Перед Вашими очами предстанут два варианта заказа такси:",
-        "secondPart": "Базовый вариант — обычная поездка от точки посадки до точки высадки. Этот вариант предоставляется сервисом заказа такси, но не стоит забывать о возможности поразмяться, пройдя несколько сотен метров, и при этом сэкономить.",
-        "thirdPart": "Оптимальный вариант — Свифти подберёт точку посадки и точку высадки для оптимизации стоимости заказа. Места посадки и высадки будут находиться в радиусе ~500 метров от выбранных адресов (~7–10 минут пешком)."
+        "firstPart": "Two options for ordering a taxi will appear in front of your eyes:",
+        "secondPart": "The basic option is a regular trip from the pick—up point to the drop-off point. This option is provided by the taxi ordering service, but do not forget about the opportunity to exercise after walking a few hundred meters, and at the same time save money.",
+        "thirdPart": "The optimal option: Swift will select the pick-up point and the drop-off point to optimize the cost of the order. Pick-up and drop-off points will be located within a radius of ~500 meters from the selected addresses (~7-10 minutes on foot)."
       },
-      "fourthPart": "Можно посмотреть маршрут до точки посадки на карте, нажав на кнопку «маршрут до точки посадки». И не забудьте проверить маршрут до точки высадки, нажав на кнопку «маршрут до точки высадки».",
-      "fifthPart": "После выбора варианта заказа (оптимальный или базовый) нажмите кнопку «заказать такси». Приложение Яндекс.Go откроется с учётом вашего выбранного варианта.",
-      "sixthPart": "Не забудьте учесть время, которое потребуется вам, чтобы дойти до точки посадки. Ведь никто не хочет платить лишние сэкономленные деньги за ожидание заказанного такси!"
+      "fourthPart": "You can view the route to the landing point on the map by clicking on the «route to the pick-up point» button. And don't forget to check the route to the drop-off point by clicking on the «route to the drop-off point» button.",
+      "fifthPart": "After selecting the order option (optimal or basic), click the «order a taxi» button. The Yandex.Go app will open based on your selected option..",
+      "sixthPart": "Do not forget to take into account the time it will take you to reach the landing point. After all, no one wants to pay extra money for waiting for a taxi!"
     },
-    "lastWords": "Полагайтесь на свои силы и избегайте ненужных трат! Команда Свифти желает вам приятных приключений!"
+    "lastWords": "Rely on your strength and avoid unnecessary expenses! The Swifti team wishes you a pleasant adventure!"
   },
   "termOfUsePage": {
-    "title": "Условия использования сервиса Swifti",
-    "subtitle": "Настоящие условия регулируют ваш доступ и использование вебсайта Компании https://swifti.app, включая любые субдомены (совместно, «Сайт»), и все связанные услуги (совместно «Услуги Свифти»). Сайт и Услуги Свифти в дальнейшем совместно именуются как «Платформа Свифти».",
+    "title": "Terms and Conditions",
+    "subtitle": "These terms and conditions govern your access and use of the Company's website https://swifti.app , including any subdomains (collectively, the «Site»), and all related services (collectively, the «Swifti Services»). The Swifti Website and Services are hereinafter collectively referred to as the «Swifti Platform».",
     "disclaimer": {
-      "firstPart": "ПОЖАЛУЙСТА, ВНИМАТЕЛЬНО ОЗНАКОМЬТЕСЬ С НАСТОЯЩИМ СОГЛАШЕНИЕМ. РЕГИСТРИРУЯСЬ, ПОЛУЧАЯ ДОСТУП, ПРОСМАТРИВАЯ ИНФОРМАЦИЮ, СКАЧИВАЯ МАТЕРИАЛЫ ИЛИ ИСПОЛЬЗУЯ ПЛАТФОРМУ СВИФТИ, ВЫ (А) ПРИЗНАЕТЕ, ЧТО ВЫ ПРОЧИТАЛИ, ПОНЯЛИ И ПРИНИМАЕТЕ УСЛОВИЯ НАСТОЯЩЕГО СОГЛАШЕНИЯ, И (В) НАСТОЯЩИМ ПОДТВЕРЖДАЕТЕ, ЧТО ВАШ ВОЗРАСТ ДОСТАТОЧЕН ДЛЯ ТАКОЙ ИСПОЛЬЗОВАНИЯ ПЛАТФОРМЫ СВИФТИ В СООТВЕТСТВИИ С ПРИМЕНИМЫМ ЗАКОНОДАТЕЛЬСТВОМ И/ИЛИ ЧТО У ВАС ЕСТЬ ВСЕ НЕОБХОДИМЫЕ СОГЛАСИЯ (НАПРИМЕР, СОГЛАСИЕ РОДИТЕЛЕЙ) В ПОЛНОМ СООТВЕТСТВИИ С ПРИМЕНИМЫМ ЗАКОНОДАТЕЛЬСТВОМ, ВКЛЮЧАЯ СОГЛАСИЕ ДЛЯ ЦЕЛЕЙ ЗАКОНОДАТЕЛЬСТВА О ЗАЩИТЕ ИНФОРМАЦИИ, В ИНОМ СЛУЧАЕ РЕГИСТРАЦИЯ НА ПЛАТФОРМЕ СВИФТИ И ЕЁ ИСПОЛЬЗОВАНИЕ ЗАПРЕЩЕНЫ.",
-      "secondPart": "В СЛУЧАЕ ЕСЛИ ВАМ, В СООТВЕТСТВИИ С ЗАКОНОДАТЕЛЬСТВОМ ВАШЕГО ГОСУДАРСТВА, ЗАПРЕЩЕНО ИСПОЛЬЗОВАТЬ ПЛАТФОРМУ СФИВТИ ИЛИ ЕЁ ЧАСТИ, ИЛИ ЕСЛИ ЕСТЬ ИНЫЕ ПРАВОВЫЕ ОГРАНИЧЕНИЯ, У ВАС НЕТ ПРАВА ИСПОЛЬЗОВАТЬ ЕЁ. В ТАКОМ СЛУЧАЕ ВЫ БУДЕТЕ САМОСТОЯТЕЛЬНО НЕСТИ ОТВЕТСТВЕННОСТЬ ЗА ИСПОЛЬЗОВАНИЕ ПЛАТФОРМЫ СВИФТИ ИЛИ РЕЛЕВАНТНОЙ ЕЁ ЧАСТИ НА ТЕРРИТОРИИ ВАШЕГО ГОСУДАРСТВА С НАРУШЕНИЕМ ПРИМЕНИМОГО ЗАКОНОДАТЕЛЬСТВА."
+      "firstPart": "PLEASE READ THIS AGREEMENT CAREFULLY. BY REGISTERING, ACCESSING, VIEWING INFORMATION, DOWNLOADING MATERIALS OR USING THE SWIFTI PLATFORM, YOU (A) ACKNOWLEDGE THAT YOU HAVE READ, UNDERSTOOD AND ACCEPT THE TERMS OF THIS AGREEMENT, AND (C) HEREBY CONFIRM THAT YOU ARE OLD ENOUGH TO USE THE SWIFTI PLATFORM IN ACCORDANCE WITH APPLICABLE LAW AND/OR THAT YOU HAVE ALL NECESSARY CONSENTS (E.G. PARENTAL CONSENT) IN FULL COMPLIANCE WITH APPLICABLE LAW, INCLUDING CONSENT FOR THE PURPOSES OF INFORMATION PROTECTION LEGISLATION, OTHERWISE, REGISTRATION ON THE SWIFT PLATFORM AND ITS USE ARE PROHIBITED.",
+      "secondPart": "IF, IN ACCORDANCE WITH THE LEGISLATION OF YOUR COUNTRY, YOU ARE PROHIBITED FROM USING THE SWIFTI PLATFORM OR PARTS OF IT, OR IF THERE ARE OTHER LEGAL RESTRICTIONS, YOU DO NOT HAVE THE RIGHT TO USE IT. IN THIS CASE, YOU WILL BE SOLELY RESPONSIBLE FOR USING THE SWIFTI PLATFORM OR ITS RELEVANT PART ON THE TERRITORY OF YOUR STATE IN VIOLATION OF APPLICABLE LAW."
     },
     "content": {
       "generalProvisions": {
-        "title": "Общие положения",
+        "title": "General terms",
         "content": {
-          "firstPart": "Платформа Свифти предлагает пользователю сети Интернет (далее — Пользователь) использовать сервис экономии средств на заказе такси (далее — «Сервис»), доступный по адресу: https://taxi.yandex.ru/, предоставляемый Яндекс.Такси, именуемый также Яндекс Go.",
-          "secondPart": "Во всем, что не предусмотрено настоящими условиями, отношения между Платформой Свифти и Пользователем в связи с использованием Сервиса регулируются Пользовательским соглашением сервисов Яндекса (https://yandex.ru/legal/rules), а также Лицензией на использование поисковой системы Яндекса (https://yandex.ru/legal/termsofuse), Политикой конфиденциальности (https://yandex.ru/legal/confidential).",
-          "thirdPart": "Начиная использовать Сервис/его отдельные функции, Пользователь считается принявшим настоящие условия, а также условия всех указанных выше документов, в полном объёме, без всяких оговорок и исключений. В случае несогласия Пользователя с какими‑либо из положений указанных документов, Пользователь не вправе использовать Сервис.",
-          "fourthPart": "Настоящие условия могут быть изменены Платформой Свифти без какого‑либо специального уведомления, новая редакция условий вступает в силу с момента её размещения в сети Интернет по указанному в настоящем абзаце адресу, если иное не предусмотрено новой редакцией условий. Действующая редакция условий всегда находится на странице по адресу: https://docs.google.com/document/d/1onYqgW7xwIiny7ixUfICHbccMw5v3GICKJtw3YipnOM/edit?usp=drive_link",
-          "fifthPart": "В случае если Платформой Свифти были внесены какие‑либо изменения в настоящие условия, в порядке, предусмотренном п. 4. настоящих условий, с которыми Пользователь не согласен, он обязан прекратить использование Сервиса.",
-          "sixthPart": "Сервис предлагает Пользователю возможность бесплатного доступа к сайту. Все существующие на данный момент функции Сервиса, а также любое их развитие и/или добавление новых является предметом настоящих условий.",
-          "seventhPart": "Используя Сервис, Пользователь даёт своё согласие на получение сообщений информационного и рекламного характера. Пользователь вправе отказаться от получения сообщений рекламного характера путём использования соответствующего функционала Сервиса или следуя инструкциям, указанным в полученном сообщении рекламного характера."
+          "firstPart": "The Swifti platform offers the Internet user (hereinafter referred to as the User) to use the cost—saving service for ordering a taxi (hereinafter referred to as the «Service»), available at: https://taxi .yandex.ru / provided by Yandex.Taxi, also referred to as Yandex Go.",
+          "secondPart": "In everything that is not provided for in these terms, the relationship between the Swifti Platform and the User in connection with the use of the Service is governed by the Yandex Services User Agreement (https://yandex.ru/legal/rules ), as well as a License to use the Yandex search engine (https://yandex.ru/legal/termsofuse), Privacy Policy (https://yandex.ru/legal/confidential).",
+          "thirdPart": "By starting to use the Service/its individual functions, the User is considered to have accepted these terms and conditions, as well as the terms of all the above documents, in full, without any reservations or exceptions. If the User does not agree with any of the provisions of these documents, the User is not entitled to use the Service.",
+          "fourthPart": "These terms may be changed by the Swifti Platform without any special notice, the new version of the terms comes into force from the moment it is posted on the Internet at the address specified in this paragraph, unless otherwise provided by the new version of the terms. The current version of the terms is always available at: https://docs.google.com/document/d/1onYqgW7xwIiny7ixUfICHbccMw5v3GICKJtw3YipnOM/edit?usp=drive_link",
+          "fifthPart": "If the Swifti Platform has made any changes to these terms, in accordance with the procedure provided for in clause 4. of these terms, with which the User does not agree, he is obliged to stop using the Service.",
+          "sixthPart": "The service offers the User the opportunity to access the site for free. All currently existing functions of the Service, as well as any development and/or addition of new ones, are subject to these terms.",
+          "seventhPart": "By using the Service, the User gives his consent to receive informational and advertising messages. The User has the right to refuse to receive advertising messages by using the appropriate functionality of the Service or following the instructions specified in the received advertising message."
         }
       },
       "serviceUsage": {
-        "title": "Использование Сервиса",
+        "title": "Using the Service",
         "content": {
-          "firstPart": "Сервис предоставляет Пользователю функциональную возможность оптимизировать расходы Яндекс.Такси путём выбора оптимальных точек посадки и высадки Пользователя.",
-          "secondPart": "Сервис предоставляет Пользователю функциональную возможность автоматического построения маршрутов на картах, указывающих на вариант пути от точки отправления до точки назначения, указанных Пользователем (Далее — «Маршрут») и оптимизированного по стоимости маршрута на картах, указывающих на вариант пути от скорректированной точки отправления до скорректированной точки назначения, предложенной Платформой Свифти (Далее — «Скорректированный Маршрут»). Построение Маршрутов допускается исключительно для удобства использования Пользователем Сервиса.",
-          "thirdPart": "Информация, по Скорректированному Маршруту рассчитывается на основание анализа данных и носит справочный характер.",
-          "fourthPart": "Пользователь должен самостоятельно оценивать достоверность, надёжность, полноту или полезность Маршрута и/или Скорректированного Маршрута и самостоятельно несёт все риски, связанные с использованием (невозможностью использования) Сервиса.",
-          "fifthPart": "Пользователь самостоятельно и всецело несёт все риски и ответственность за выбор местоположения точки посадки и точки высадки, а также выбор и заказ такси по Маршруту и/или Скорректированному Маршруту.",
-          "sixthPart": "Пользователь самостоятельно и всецело несёт все риски и ответственность за выбор Маршрута и следование выбранным Маршрутом. Платформа Свифти не гарантирует правильность, оптимальность, актуальность и/или соответствие Маршрутов или Скорректированных Маршрутов правилам дорожного движения и не несёт ответственности за выбор Пользователем Маршрута/Скорректированного Маршрута и последствий следования ему. Пользователь должен предпринимать все меры внимательности и осмотрительности перед выбором Маршрута/Скорректированного Маршрута и в ходе его использования."
+          "firstPart": "The service provides the User with a functional opportunity to reduce Yandex.Taxi expenses  by choosing the optimal pick-up and drop-off points for the User.",
+          "secondPart": "The Service provides the User with the functionality to automatically build routes on maps indicating the option of the path from the point of departure to the destination specified by the User (Hereinafter referred to as the «Route») and a cost—optimized route on maps indicating the option of the path from the adjusted point of departure to the adjusted destination proposed by the Swifti Platform (Hereinafter referred to as the «Adjusted The route»). The construction of Routes is allowed solely for the convenience of using the Service by the User.",
+          "thirdPart": "The information on the Adjusted Route is calculated based on data analysis and is for reference purposes.",
+          "fourthPart": "The User must independently assess the reliability, reliability, completeness or usefulness of the Route and/or the Adjusted Route and independently bears all risks associated with the use (inability to use) the Service.",
+          "fifthPart": "The User independently and fully bears all risks and responsibility for choosing the location of the pick-up and drop-off points, as well as choosing and ordering a taxi along the Route and/or Adjusted Route.",
+          "sixthPart": "The User independently and fully bears all risks and responsibility for choosing the Route and following the chosen Route. The Swifti Platform does not guarantee the correctness, optimality, relevance and/or compliance of Routes or Adjusted Routes with traffic rules and is not responsible for the User's choice of Route/The adjusted Route and the consequences of following it. The User must take all measures of care and caution before choosing a Route/The adjusted Route and during its use."
         }
       },
       "otherProvision": {
-        "title": "Иные положения",
+        "title": "Other provisions",
         "content": {
-          "firstPart": "Платформа Свифти оставляет за собой право на своё усмотрение ограничить доступ Пользователя к Сервису (или к определённым функциям Сервиса, при наличии технологической возможности) с использованием его учётной записи или полностью заблокировать учётную запись Пользователя при неоднократном нарушении настоящих условий, либо применить к Пользователю иные меры с целью соблюдения требований законодательства или прав и законных интересов третьих лиц.",
-          "secondPart": "Любая информация, используемая в Сервисе, предназначена исключительно для личного некоммерческого использования. При этом любое копирование Данных, их воспроизведение, переработка, распространение, доведение до всеобщего сведения (опубликование) в сети Интернет, любое использование в средствах массовой информации и/или в коммерческих целях без предварительного письменного разрешения правообладателя запрещается, за исключением случаев, прямо предусмотренных функциональными возможностями сервиса, настоящими условиями или документами, указанными в п. 1.2. настоящих условий.",
-          "thirdPart": "Представленная в Сервисе информация носит справочный характер. Платформа Свифти не гарантирует, что данные, полученные с использованием Сервиса, соответствует/будет соответствовать требованиям Пользователя, а также что функции Сервиса будут предоставляться непрерывно, быстро, надёжно и без ошибок.",
-          "fourthPart": "Платформа Свифти не гарантирует точность, актуальность, полноту, достоверность информации, которая может быть получена с использованием Сервиса. Информация Сервиса не предназначена для использования для каких‑либо целей или в каком‑либо качестве (например, для установления и/или подтверждения каких‑либо фактов, в качестве доказательств при вынесении юридически значимых решений, для предоставления справок и проведения точных расчётов, исследований, получения точных координат и т.д.)."
+          "firstPart": "The Swifti Platform reserves the right, at its discretion, to restrict the User's access to the Service (or to certain functions of the Service, if technologically possible) using his account or completely block the User's account in case of repeated violation of these terms, or apply other measures to the User in order to comply with legal requirements or the rights and legitimate interests of third parties persons.",
+          "secondPart": "Any information used in the Service is intended solely for personal, non-commercial use. At the same time, any copying of Data, their reproduction, processing, distribution, making available to the public (publication) on the Internet, any use in mass media and/or for commercial purposes without the prior written permission of the copyright holder is prohibited, except in cases expressly provided for by the functionality of the service, these terms or documents specified in Clause 1.2. of these terms and Conditions.",
+          "thirdPart": "The information provided in the Service is for reference purposes. The Swifti Platform does not guarantee that the data obtained using the Service meets/will meet the User's requirements, as well as that the functions of the Service will be provided continuously, quickly, reliably and error-free.",
+          "fourthPart": "The Swifti Platform does not guarantee the accuracy, relevance, completeness, reliability of information that can be obtained using the Service. The information of the Service is not intended to be used for any purpose or in any capacity (for example, to establish and/or confirm any facts, as evidence in making legally significant decisions, to provide information and conduct accurate calculations, research, obtaining accurate coordinates, etc.)."
         }
       },
       "copyrightInfo": {
-        "title": "Информация о правообладателях и обладателях информации",
-        "content": "Со списком правообладателей и обладателей используемой информации можно ознакомиться по адресу: https://yandex.ru/legal/right_holders"
+        "title": "Copyright information",
+        "content": "The list of copyright holders and holders of the information used can be found at: https://yandex.ru/legal/right_holders"
       }
     },
-    "publicationDate": "Дата публикации: 07.06.2023",
-    "effectiveDate": "Дата вступления в силу: 01.07.2023"
+    "publicationDate": "Publication date: 07.06.2023",
+    "effectiveDate": "Commencement date: 01.07.2023"
   },
   "basement": {
     "language": {
@@ -148,12 +149,12 @@
     },
     "menu": {
       "aboutUsPage": "About us",
-      "howItWorksPage": "How it's works?",
+      "howItWorksPage": "How does it work?",
       "contacts": "Contacts"
     },
     "documents": {
-      "userGuide": "Руководство пользователя",
-      "termOfUse": "Пользовательское соглашение"
+      "userGuide": "User's Guide",
+      "termOfUse": "User agreement"
     }
   }
 }

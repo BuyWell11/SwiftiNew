@@ -1,4 +1,4 @@
-import "./IconLink.css";
+import "../styles/IconLink.css";
 
 interface Props {
     image: string;
@@ -7,7 +7,7 @@ interface Props {
 
 function IconLink({image, link}: Props) {
     return (
-        <a href={link} className="iconLink">
+        <a href={link} className="iconLink" target="_blank" rel="noreferrer">
             <img src={image} alt="img"/>
         </a>
     );

@@ -14,7 +14,7 @@ import CustomSelect from "./CustomSelect.js";
 import DirectionsWalkIcon from '@mui/icons-material/DirectionsWalk';
 import HelpOutlineIcon from '@mui/icons-material/HelpOutline';
 import PlaceIcon from '@mui/icons-material/Place';
-import "./AddressesInputBlock.css"
+import "../styles/AddressesInputBlock.css"
 import {Fragment, useCallback, useEffect} from "react";
 import FunctionUtils from "../utils/FunctionUtils.js";
 import RequestService from "../services/RequestService.js";
@@ -115,7 +115,7 @@ function AddressesInputBlock({handleSubmit}: Props) {
             RequestService.getAddresses(address, city).then((data) => {
                 formState.setFieldValue('fromOptions', data)
             })
-        }, 1500),
+        }, 1000),
         []
     );
 
@@ -128,7 +128,7 @@ function AddressesInputBlock({handleSubmit}: Props) {
             RequestService.getAddresses(address, city).then((data) => {
                 formState.setFieldValue('toOptions', data)
             })
-        }, 1500),
+        }, 1000),
         []
     );
 
@@ -142,7 +142,6 @@ function AddressesInputBlock({handleSubmit}: Props) {
 
     useEffect(() => {
         formState.setFieldValue('city', translatedCities[0]);
-        console.log(formState.values.city)
     }, [cities])
 
     return (

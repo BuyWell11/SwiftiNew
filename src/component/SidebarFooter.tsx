@@ -1,11 +1,11 @@
-import {AppBar, Box, Toolbar} from "@mui/material";
+import {AppBar, Box} from "@mui/material";
 import Telegram from "../img/TelegramIcon.svg";
 import MailIcon from "../img/MailIcon.svg";
 import DonateIcon from "../img/DonateIcon.svg";
 import IconLink from "./IconLink";
 import CustomSelect from "./CustomSelect.js";
 import SlideMenuWave from "../img/SlideMenuWave.svg";
-import "./SidebarFooter.css";
+import "../styles/SidebarFooter.css";
 import {translate} from "../services/LocalizationService.js";
 import {changeLocalization} from "../redux/userSlice";
 import {useAppDispatch, useAppSelector} from "../hooks/reduxHooks";
@@ -31,19 +31,19 @@ function SidebarFooter({className}: Props) {
     return (
         <AppBar position="static" color="primary" className={`appBarFooter ${className}`}>
             <img src={SlideMenuWave} alt="Wave" className="sidebarFooterWave"/>
-            <Toolbar className="sidebarFooter">
+            <Box className="sidebarFooter">
                 <hr className="separator"/>
                 <Box className="imgBoxAndSelect">
                     <Box className="sidebarFooterImgBox">
-                        <IconLink image={MailIcon} link=""/>
-                        <IconLink image={Telegram} link=""/>
-                        <IconLink image={DonateIcon} link=""/>
+                        <IconLink image={MailIcon} link="mailto:swiftitraveler@gmail.com"/>
+                        <IconLink image={Telegram} link="https://t.me/swifti_app"/>
+                        <IconLink image={DonateIcon} link="https://socprofile.com/swifti/"/>
                     </Box>
                     <CustomSelect options={translatedLanguages}
                                   selectedOption={translatedLanguages.find((language) => language.value === localization.value) || localization}
                                   handleClick={handleChangeLanguage}/>
                 </Box>
-            </Toolbar>
+            </Box>
         </AppBar>
     );
 }

@@ -16,7 +16,21 @@ class LocalizationService {
                 currentObj = currentObj[key];
             }
         }
-        return typeof currentObj === 'string' ? currentObj : path;
+        
+        return typeof currentObj === 'string' ? this.decodeHtmlSpecialChars(currentObj) : path;
+    }
+
+    static decodeHtmlSpecialChars(text: string): string {
+        const map: { [key: string]: string } = {
+            '&amp;': '&',
+            '&lt;': '<',
+            '&gt;': '>',
+            '&quot;': '"',
+            '&#039;': "'",
+            '&nbsp;': '\u00A0'
+        };
+
+        return text.replace(/&amp;|&lt;|&gt;|&quot;|&#039;|&nbsp;/g, m => map[m]);
     }
 }
 

@@ -3,7 +3,7 @@ import ThumbUpOffAltIcon from '@mui/icons-material/ThumbUpOffAlt';
 import ArrowRightAltIcon from '@mui/icons-material/ArrowRightAlt';
 import DirectionsWalkIcon from '@mui/icons-material/DirectionsWalk';
 import LocalTaxiIcon from '@mui/icons-material/LocalTaxi';
-import './WayBlock.css'
+import '../styles/WayBlock.css'
 import {Way} from "../models/Way";
 import {translate} from "../services/LocalizationService";
 
