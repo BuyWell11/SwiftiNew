@@ -14,7 +14,7 @@ import CustomSelect from "./CustomSelect.js";
 import DirectionsWalkIcon from '@mui/icons-material/DirectionsWalk';
 import HelpOutlineIcon from '@mui/icons-material/HelpOutline';
 import PlaceIcon from '@mui/icons-material/Place';
-import "../styles/AddressesInputBlock.css"
+import "../styles/components/AddressesInputBlock.css"
 import {Fragment, useCallback, useEffect} from "react";
 import FunctionUtils from "../utils/FunctionUtils.js";
 import RequestService from "../services/RequestService.js";
@@ -35,11 +35,14 @@ interface HtmlTooltipProps extends TooltipProps {
 
 function AddressesInputBlock({handleSubmit}: Props) {
 
+    const localization = useAppSelector(state => state.user.localization);
     const cities = useAppSelector(state => state.backendData.cities);
 
     const translatedCities = cities.map((city) => {
         return {label: translate(`mainPage.searchField.city.${city.label}`), value: city.value}
     })
+
+    const myPositionLabel = translate("mainPage.searchField.myLocation");
 
     const HtmlTooltip = styled(({className, ...props}: HtmlTooltipProps) => (
         <Tooltip {...props} classes={{popper: className}} enterTouchDelay={0}/>
@@ -77,6 +80,7 @@ function AddressesInputBlock({handleSubmit}: Props) {
         fromOptions: AddressDTO[],
         toOptions: AddressDTO[],
         to: AddressDTO | null,
+        myPosition: AddressDTO | null;
         agree: boolean,
     }
 
@@ -89,6 +93,7 @@ function AddressesInputBlock({handleSubmit}: Props) {
         fromOptions: [],
         toOptions: [],
         to: null,
+        myPosition: null,
         agree: false,
     }
 
@@ -101,15 +106,44 @@ function AddressesInputBlock({handleSubmit}: Props) {
                 walkingTime: values.time,
                 city: values.city.value,
             }
-            console.log(values)
             handleSubmit(dto)
         }
     })
 
+    useEffect(() => {
+        const successHandler = (position: GeolocationPosition) => {
+            const {latitude, longitude} = position.coords;
+            const myPosition = {
+                label: myPositionLabel,
+                latitude: latitude,
+                longitude: longitude,
+                id: 0,
+            };
+
+            //костыль чтобы был актуальны перевод, мб потом починю
+            formState.values.myPosition = myPosition;
+            formState.values.fromOptions = [myPosition]
+            formState.setFieldValue("myPosition", myPosition)
+            formState.setFieldValue("fromOptions", [myPosition])
+        };
+
+        const errorHandler = (error: GeolocationPositionError) => {
+            console.log(error.message);
+        };
+
+        //const watchId = navigator.geolocation.watchPosition(successHandler, errorHandler);
+
+        navigator.geolocation.getCurrentPosition(successHandler, errorHandler);
+
+        /*return () => {
+            navigator.geolocation.clearWatch(watchId);
+        };*/
+    }, [localization])
+
     const handleFromAddresses = useCallback(
         FunctionUtils.debounce((address, city) => {
             if (address === '') {
-                formState.setFieldValue('fromOptions', [])
+                formState.setFieldValue('fromOptions', formState.values.myPosition ? [formState.values.myPosition] : [])
                 return
             }
             RequestService.getAddresses(address, city).then((data) => {
@@ -155,7 +189,7 @@ function AddressesInputBlock({handleSubmit}: Props) {
                 <hr className="separator"/>
                 <span className="citySelectBlock">{translate("mainPage.searchField.title")}</span>
                 <Stack direction="row" spacing={1} className="customSlider">
-                    <DirectionsWalkIcon className="sliderIcon"/>
+                    <DirectionsWalkIcon sx={{color: '#2D2D2D'}}/>
                     <Slider
                         name="time"
                         defaultValue={0}
@@ -187,6 +221,7 @@ function AddressesInputBlock({handleSubmit}: Props) {
                         inputValue={formState.values.fromText}
                         id="from"
                         options={formState.values.fromOptions}
+                        noOptionsText={translate("mainPage.searchField.noOptionText")}
                         getOptionLabel={(option) => option.label}
                         isOptionEqualToValue={(option, value) => option.id === value.id}
                         sx={{width: 300}}
@@ -208,6 +243,7 @@ function AddressesInputBlock({handleSubmit}: Props) {
                         inputValue={formState.values.toText}
                         id="to"
                         options={formState.values.toOptions}
+                        noOptionsText={translate("mainPage.searchField.noOptionText")}
                         getOptionLabel={(option) => option.label}
                         isOptionEqualToValue={(option, value) => option.label === value.label}
                         sx={{width: 300}}

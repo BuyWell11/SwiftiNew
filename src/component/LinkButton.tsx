@@ -1,6 +1,6 @@
 import {Box, Button, ButtonProps} from "@mui/material";
 import {ReactNode} from "react";
-import "../styles/LinkButton.css"
+import "../styles/components/LinkButton.css"
 
 interface Props extends ButtonProps {
     href: string,

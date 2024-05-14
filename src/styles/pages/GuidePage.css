@@ -1,0 +1,12 @@
+.guide-page {
+  width: 360px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.guide-page ol {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}

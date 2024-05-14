@@ -5,7 +5,7 @@ import DonateIcon from "../img/DonateIcon.svg";
 import IconLink from "./IconLink";
 import CustomSelect from "./CustomSelect.js";
 import SlideMenuWave from "../img/SlideMenuWave.svg";
-import "../styles/SidebarFooter.css";
+import "../styles/components/SidebarFooter.css";
 import {translate} from "../services/LocalizationService.js";
 import {changeLocalization} from "../redux/userSlice";
 import {useAppDispatch, useAppSelector} from "../hooks/reduxHooks";

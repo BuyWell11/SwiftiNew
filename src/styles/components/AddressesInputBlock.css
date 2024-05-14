@@ -30,10 +30,7 @@
 .customSlider {
   width: 300px;
   margin-bottom: 16px;
-}
-
-.sliderIcon {
-  color: #2D2D2D;
+  align-items: center;
 }
 
 .MuiSlider-markLabel {
@@ -59,6 +56,15 @@
 .agreeBlock {
   align-items: center;
   margin-bottom: 20px;
+}
+
+.addressesInputBlock hr {
+  width: 100%;
+  height: 1px; /* высота линии */
+  background-color: #C6B6E3; /* цвет линии */
+  margin-top: 20px; /* отступ сверху */
+  margin-bottom: 20px; /* отступ снизу */
+  border: none;
 }
 
 .addressesInputButton {

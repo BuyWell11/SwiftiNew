@@ -1,4 +1,4 @@
-import "../styles/IconLink.css";
+import "../styles/components/IconLink.css";
 
 interface Props {
     image: string;

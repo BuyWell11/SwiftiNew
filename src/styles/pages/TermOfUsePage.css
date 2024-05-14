@@ -1,0 +1,19 @@
+.term-of-use-page {
+  width: 360px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.term-of-use-page .MuiBox-root {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.term-of-use-page ol {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-left: 24px;
+}

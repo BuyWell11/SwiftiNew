@@ -7,7 +7,7 @@ import LinkButton from "./LinkButton.js";
 import ArrowRightAltIcon from "@mui/icons-material/ArrowRightAlt.js";
 import LocalTaxiIcon from "@mui/icons-material/LocalTaxi.js";
 import DirectionsWalkIcon from "@mui/icons-material/DirectionsWalk.js";
-import "../styles/WaySelector.css"
+import "../styles/components/WaySelector.css"
 import {RouteDTO} from "../dto/RouteDTO";
 import {Way} from "../models/Way";
 import AddressesInputBlock from "./AddressesInputBlock";

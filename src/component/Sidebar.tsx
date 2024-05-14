@@ -1,7 +1,8 @@
 import {Drawer, List, ListItem, ListItemText, Toolbar} from "@mui/material";
-import "../styles/Sidebar.css";
+import "../styles/components/Sidebar.css";
 import SidebarFooter from "./SidebarFooter.js";
 import {translate} from "../services/LocalizationService.js";
+import {Link} from "react-router-dom";
 
 interface Props {
     isOpen: boolean,
@@ -10,7 +11,14 @@ interface Props {
 
 function Sidebar({isOpen, onClose}: Props) {
 
-    const handleMenuItemClick = () => {
+    const handleMenuItemClick = (id: string) => {
+        const element = document.getElementById(id);
+        if (element) {
+            window.scrollTo({
+                top: element.offsetTop,
+                behavior: 'smooth'
+            });
+        }
         onClose();
     };
     return (
@@ -24,19 +32,19 @@ function Sidebar({isOpen, onClose}: Props) {
             <Toolbar/>
             <List>
                 <ListItem>
-                    <a href="#section1" onClick={handleMenuItemClick}>
+                    <Link to="/#about" onClick={() => handleMenuItemClick("about")}>
                         <ListItemText primary={translate('basement.menu.aboutUsPage')}/>
-                    </a>
+                    </Link>
                 </ListItem>
-                <ListItem>
+                {/*<ListItem>
                     <a href="#section2" onClick={handleMenuItemClick}>
                         <ListItemText primary={translate('basement.menu.howItWorksPage')}/>
                     </a>
-                </ListItem>
+                </ListItem>*/}
                 <ListItem>
-                    <a href="#section3" onClick={handleMenuItemClick}>
+                    <Link to="/#contacts" onClick={() => handleMenuItemClick("contacts")}>
                         <ListItemText primary={translate('basement.menu.contacts')}/>
-                    </a>
+                    </Link>
                 </ListItem>
             </List>
             <SidebarFooter className="sidebarFoot"/>

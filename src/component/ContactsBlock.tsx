@@ -4,13 +4,13 @@ import {translate} from "../services/LocalizationService";
 import CardIcon from "../img/Card.svg"
 import MailIcon from "../img/Mail.svg"
 import TelegramIcon from "../img/Telegram.svg"
-import "../styles/ContactsBlock.css"
+import "../styles/components/ContactsBlock.css"
 import {DONATE, EMAIL, TG} from "../vars";
 
 
 function ContactsBlock() {
     return (
-        <Box className="contactsBlock">
+        <Box className="contactsBlock" id="contacts">
             <TopicText>{translate("mainPage.contacts.title")}</TopicText>
             <Box className="contactsBlockContent">
                 <Box>

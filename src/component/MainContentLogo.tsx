@@ -1,5 +1,5 @@
 import {Box} from "@mui/material";
-import "../styles/MainContentLogo.css"
+import "../styles/components/MainContentLogo.css"
 import LogoMainContent from "../img/LogoMainContent.svg"
 import {translate} from "../services/LocalizationService";
 

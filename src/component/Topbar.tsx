@@ -2,7 +2,8 @@ import {AppBar, Toolbar, IconButton} from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import CloseIcon from "@mui/icons-material/Close";
 import Logo from "../img/Logo.svg";
-import "../styles/Topbar.css";
+import "../styles/components/Topbar.css";
+import {Link} from "react-router-dom";
 
 interface Props {
     onMenuButtonClick: Function;
@@ -10,6 +11,14 @@ interface Props {
 }
 
 function Topbar({onMenuButtonClick, isSidebarOpen}: Props) {
+
+    const scrollToTop = () => {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth' // Плавная прокрутка
+        });
+    };
+
     return (
         <AppBar
             position="fixed"
@@ -17,7 +26,7 @@ function Topbar({onMenuButtonClick, isSidebarOpen}: Props) {
             sx={{zIndex: (theme) => theme.zIndex.drawer + 1}}
         >
             <Toolbar className="topBar">
-                <img src={Logo} alt="Logo" className="logo"/>
+                <Link to="/" onClick={scrollToTop}><img src={Logo} alt="Logo" className="logo"/></Link>
                 <IconButton
                     edge="start"
                     color="inherit"

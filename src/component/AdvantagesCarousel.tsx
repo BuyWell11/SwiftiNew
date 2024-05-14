@@ -1,7 +1,7 @@
 import Carousel from "react-material-ui-carousel";
 import {Box} from "@mui/material";
 import Typography from "@mui/material/Typography";
-import "../styles/AdvantagesCarousel.css"
+import "../styles/components/AdvantagesCarousel.css"
 
 interface Props {
     data: { label: string, value: string }[]

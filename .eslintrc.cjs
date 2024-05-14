@@ -12,7 +12,9 @@ module.exports = {
   settings: {react: {version: '18.2'}},
   plugins: ['react-refresh'],
   globals: {
-    NodeJS: true
+    NodeJS: true,
+    GeolocationPosition: 'readonly',
+    GeolocationPositionError: 'readonly',
   },
   rules: {
     'react-refresh/only-export-components': [

@@ -1,7 +1,7 @@
 import {useState} from "react";
 import {ClickAwayListener} from "@mui/material";
 import ArrowIcon from "../img/DownArrow.svg";
-import "../styles/CustomSelect.css";
+import "../styles/components/CustomSelect.css";
 import {CustomSelectOption} from "../models/CustomSelectOption";
 
 interface Props {

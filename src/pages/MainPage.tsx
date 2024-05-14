@@ -1,5 +1,5 @@
 import {Box, Toolbar} from "@mui/material";
-import "../styles/Page.css"
+import "../styles/pages/Page.css"
 import MainContentLogo from "../component/MainContentLogo";
 import WaySelector from "../component/WaySelector";
 import AboutBlock from "../component/AboutBlock";

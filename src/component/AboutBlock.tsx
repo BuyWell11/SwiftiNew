@@ -1,7 +1,7 @@
 import {Box} from "@mui/material";
 import TopicText from "./TopicText";
 import {translate} from "../services/LocalizationService";
-import "../styles/AboutBlock.css"
+import "../styles/components/AboutBlock.css"
 import AdvantagesCarousel from "./AdvantagesCarousel";
 
 function AboutBlock() {
@@ -22,7 +22,7 @@ function AboutBlock() {
     })
 
     return (
-        <Box className="aboutBlock">
+        <Box className="aboutBlock" id="about">
             <TopicText>{translate("mainPage.aboutUs.title")}</TopicText>
             <Box className="aboutBlockContent">
                 <Box>
