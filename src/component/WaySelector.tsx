@@ -8,7 +8,7 @@ import ArrowRightAltIcon from "@mui/icons-material/ArrowRightAlt.js";
 import LocalTaxiIcon from "@mui/icons-material/LocalTaxi.js";
 import DirectionsWalkIcon from "@mui/icons-material/DirectionsWalk.js";
 import "../styles/components/WaySelector.css"
-import {RouteDTO} from "../dto/RouteDTO";
+import {Route} from "../models/Route";
 import {Way} from "../models/Way";
 import AddressesInputBlock from "./AddressesInputBlock";
 import {translate} from "../services/LocalizationService";
@@ -20,7 +20,7 @@ function WaySelector() {
     const [isOptimalSelected, setIsOptimalSelected] = useState(true)
     const [isLoading, setIsLoading] = useState(false)
 
-    const handleSubmit = useCallback((dto: RouteDTO) => {
+    const handleSubmit = useCallback((dto: Route) => {
         setIsLoading(true)
         RequestService.getRoute(dto).then(data => {
             setOptimalWay(data.optimal);

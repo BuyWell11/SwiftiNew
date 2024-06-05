@@ -8,16 +8,18 @@ services:
     restart: always
     networks:
       swifti_network:
-        ipv4_address: 192.168.240.2
+
 
   backend:
     build:
       context: ./backend
     container_name: backend
     restart: always
+    ports:
+      - "3000:3000"
     networks:
       swifti_network:
-        ipv4_address: 192.168.240.3
+
 
   nginx:
     build:
@@ -31,11 +33,8 @@ services:
     restart: always
     networks:
       swifti_network:
-        ipv4_address: 192.168.240.4
+
 
 networks:
   swifti_network:
     driver: bridge
-    ipam:
-      config:
-        - subnet: 192.168.240.0/24

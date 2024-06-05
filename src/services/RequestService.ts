@@ -1,6 +1,5 @@
 import {BACKEND} from "../vars";
-import {RouteDTO} from "../dto/RouteDTO";
-import {Way} from "../models/Way";
+import {Route} from "../models/Route";
 import {CustomSelectOption} from "../models/CustomSelectOption";
 import {AddressDTO} from "../dto/AddressDTO";
 import {WaysDTO} from "../dto/WaysDTO";
@@ -30,9 +29,9 @@ class RequestService {
             });
     }
 
-    static getRoute(dto: RouteDTO): Promise<WaysDTO> {
+    static getRoute(route: Route): Promise<WaysDTO> {
         const path = BACKEND +
-            `/taxi/?startPoint=${dto.startPoint}&endPoint=${dto.endPoint}&walkingTime=${dto.walkingTime}&city=${dto.city}`;
+            `/taxi/?startPoint=${route.startPoint}&endPoint=${route.endPoint}&walkingTime=${route.walkingTime}&city=${route.city}`;
         return fetch(path, {
             method: 'GET',
             headers: RequestService.HEADERS,

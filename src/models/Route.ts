@@ -1,4 +1,4 @@
-export type RouteDTO = {
+export type Route = {
     city: string;
     startPoint: string;
     endPoint: string;

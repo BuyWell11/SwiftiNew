@@ -18,12 +18,12 @@ import "../styles/components/AddressesInputBlock.css"
 import {Fragment, useCallback, useEffect} from "react";
 import FunctionUtils from "../utils/FunctionUtils.js";
 import RequestService from "../services/RequestService.js";
-import {RouteDTO} from "../dto/RouteDTO";
 //import * as Yup from 'yup';
 import {useAppSelector} from "../hooks/reduxHooks";
 import {translate} from "../services/LocalizationService";
 import {CustomSelectOption} from "../models/CustomSelectOption";
 import {AddressDTO} from "../dto/AddressDTO";
+import {Route} from "../models/Route";
 
 interface Props {
     handleSubmit: Function;
@@ -100,7 +100,7 @@ function AddressesInputBlock({handleSubmit}: Props) {
     const formState = useFormik({
         initialValues: initialValue,
         onSubmit: values => {
-            const dto: RouteDTO = {
+            const dto: Route = {
                 startPoint: `${values.from?.latitude},${values.from?.longitude}`,
                 endPoint: `${values.to?.latitude},${values.to?.longitude}`,
                 walkingTime: values.time,
@@ -221,6 +221,7 @@ function AddressesInputBlock({handleSubmit}: Props) {
                         inputValue={formState.values.fromText}
                         id="from"
                         options={formState.values.fromOptions}
+                        filterOptions={(options) => options}
                         noOptionsText={translate("mainPage.searchField.noOptionText")}
                         getOptionLabel={(option) => option.label}
                         isOptionEqualToValue={(option, value) => option.id === value.id}
@@ -243,6 +244,7 @@ function AddressesInputBlock({handleSubmit}: Props) {
                         inputValue={formState.values.toText}
                         id="to"
                         options={formState.values.toOptions}
+                        filterOptions={(options) => options}
                         noOptionsText={translate("mainPage.searchField.noOptionText")}
                         getOptionLabel={(option) => option.label}
                         isOptionEqualToValue={(option, value) => option.label === value.label}
