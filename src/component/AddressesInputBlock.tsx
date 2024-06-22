@@ -131,13 +131,13 @@ function AddressesInputBlock({handleSubmit}: Props) {
             console.log(error.message);
         };
 
-        //const watchId = navigator.geolocation.watchPosition(successHandler, errorHandler);
+        const watchId = navigator.geolocation.watchPosition(successHandler, errorHandler);
 
         navigator.geolocation.getCurrentPosition(successHandler, errorHandler);
 
-        /*return () => {
+        return () => {
             navigator.geolocation.clearWatch(watchId);
-        };*/
+        };
     }, [localization])
 
     const handleFromAddresses = useCallback(

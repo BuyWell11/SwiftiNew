@@ -4,6 +4,7 @@ import MainContentLogo from "../component/MainContentLogo";
 import WaySelector from "../component/WaySelector";
 import AboutBlock from "../component/AboutBlock";
 import ContactsBlock from "../component/ContactsBlock";
+import TutorialBlock from "../component/TutorialBlock";
 
 function MainPage() {
     return (
@@ -12,6 +13,7 @@ function MainPage() {
             <MainContentLogo/>
             <WaySelector/>
             <AboutBlock/>
+            <TutorialBlock/>
             <ContactsBlock/>
         </Box>
     );

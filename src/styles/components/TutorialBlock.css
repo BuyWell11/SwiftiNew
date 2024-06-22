@@ -1,0 +1,30 @@
+.tutorialBlock {
+    width: 360px;
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    margin-top: 80px;
+}
+
+.tutorialBlockContent {
+    border: 1px solid #2D2D2D;
+    border-radius: 20px;
+    max-width: 360px;
+    width: 280px;
+    height: 480px;
+    overflow: hidden;
+    align-self: center;
+    box-sizing: border-box;
+    position: relative;
+}
+
+.tutorialBlockContent video {
+    position: absolute;
+    object-fit: cover;
+    top: 49%;
+    left: 50%;
+    width: 100%;
+    height: 105%;
+    transform: translate(-50%, -50%);
+}
