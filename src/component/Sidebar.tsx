@@ -36,11 +36,11 @@ function Sidebar({isOpen, onClose}: Props) {
                         <ListItemText primary={translate('basement.menu.aboutUsPage')}/>
                     </Link>
                 </ListItem>
-                {/*<ListItem>
-                    <a href="#section2" onClick={handleMenuItemClick}>
+                <ListItem>
+                    <Link to="/#tutorial" onClick={() => handleMenuItemClick("tutorial")}>
                         <ListItemText primary={translate('basement.menu.howItWorksPage')}/>
-                    </a>
-                </ListItem>*/}
+                    </Link>
+                </ListItem>
                 <ListItem>
                     <Link to="/#contacts" onClick={() => handleMenuItemClick("contacts")}>
                         <ListItemText primary={translate('basement.menu.contacts')}/>
