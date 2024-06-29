@@ -4,10 +4,8 @@ import {
     Button,
     Checkbox,
     Slider,
-    Stack, styled,
+    Stack,
     TextField,
-    Tooltip,
-    tooltipClasses, TooltipProps,
 } from "@mui/material";
 import {useFormik} from "formik";
 import CustomSelect from "./CustomSelect.js";
@@ -24,13 +22,10 @@ import {translate} from "../services/LocalizationService";
 import {CustomSelectOption} from "../models/CustomSelectOption";
 import {AddressDTO} from "../dto/AddressDTO";
 import {Route} from "../models/Route";
+import HtmlTooltip from "./HtmlTooltip";
 
 interface Props {
     handleSubmit: Function;
-}
-
-interface HtmlTooltipProps extends TooltipProps {
-    className?: string;
 }
 
 function AddressesInputBlock({handleSubmit}: Props) {
@@ -43,21 +38,6 @@ function AddressesInputBlock({handleSubmit}: Props) {
     })
 
     const myPositionLabel = translate("mainPage.searchField.myLocation");
-
-    const HtmlTooltip = styled(({className, ...props}: HtmlTooltipProps) => (
-        <Tooltip {...props} classes={{popper: className}} enterTouchDelay={0}/>
-    ))(() => ({
-        [`& .${tooltipClasses.tooltip}`]: {
-            backgroundColor: '#FDFCFC',
-            color: '#2D2D2D',
-            maxWidth: 220,
-            fontSize: '12px',
-            border: '1px solid #D5D5D5',
-            borderRadius: '12px',
-            lineHeight: '100%',
-            weight: '400'
-        },
-    }));
 
     const marks = [
         {
@@ -75,11 +55,11 @@ function AddressesInputBlock({handleSubmit}: Props) {
         city: CustomSelectOption,
         time: number,
         from: AddressDTO | null,
+        to: AddressDTO | null,
         fromText: string,
         toText: string,
         fromOptions: AddressDTO[],
         toOptions: AddressDTO[],
-        to: AddressDTO | null,
         myPosition: AddressDTO | null;
         agree: boolean,
     }
@@ -119,12 +99,10 @@ function AddressesInputBlock({handleSubmit}: Props) {
                 longitude: longitude,
                 id: 0,
             };
-
-            //костыль чтобы был актуальны перевод, мб потом починю
-            formState.values.myPosition = myPosition;
-            formState.values.fromOptions = [myPosition]
             formState.setFieldValue("myPosition", myPosition)
-            formState.setFieldValue("fromOptions", [myPosition])
+            if (formState.values.fromOptions.length === 0) {
+                formState.setFieldValue("fromOptions", [myPosition])
+            }
         };
 
         const errorHandler = (error: GeolocationPositionError) => {
@@ -176,7 +154,7 @@ function AddressesInputBlock({handleSubmit}: Props) {
 
     useEffect(() => {
         formState.setFieldValue('city', translatedCities[0]);
-    }, [cities])
+    }, [cities, localization])
 
     return (
         <Box className="addressesInputBlock">
