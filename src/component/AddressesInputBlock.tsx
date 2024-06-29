@@ -116,12 +116,12 @@ function AddressesInputBlock({handleSubmit}: Props) {
         return () => {
             navigator.geolocation.clearWatch(watchId);
         };
-    }, [localization])
+    }, [localization, formState.values.fromOptions])
 
     const handleFromAddresses = useCallback(
         FunctionUtils.debounce((address, city) => {
             if (address === '') {
-                formState.setFieldValue('fromOptions', formState.values.myPosition ? [formState.values.myPosition] : [])
+                formState.setFieldValue('fromOptions', [])
                 return
             }
             RequestService.getAddresses(address, city).then((data) => {
