@@ -124,7 +124,10 @@ function AddressesInputBlock({handleSubmit}: Props) {
                 formState.setFieldValue('fromOptions', [])
                 return
             }
-            RequestService.getAddresses(address, city).then((data) => {
+            if (address === myPositionLabel) {
+                return;
+            }
+            RequestService.getAddressesFromYandex(address, city).then((data) => {
                 formState.setFieldValue('fromOptions', data)
             })
         }, 1000),
@@ -137,7 +140,7 @@ function AddressesInputBlock({handleSubmit}: Props) {
                 formState.setFieldValue('toOptions', [])
                 return
             }
-            RequestService.getAddresses(address, city).then((data) => {
+            RequestService.getAddressesFromYandex(address, city).then((data) => {
                 formState.setFieldValue('toOptions', data)
             })
         }, 1000),
@@ -146,11 +149,11 @@ function AddressesInputBlock({handleSubmit}: Props) {
 
     useEffect(() => {
         handleFromAddresses(formState.values.fromText, formState.values.city)
-    }, [formState.values.city, formState.values.fromText, handleFromAddresses]);
+    }, [formState.values.fromText, handleFromAddresses]);
 
     useEffect(() => {
         handleToAddresses(formState.values.toText, formState.values.city)
-    }, [formState.values.city, formState.values.toText, handleToAddresses]);
+    }, [formState.values.toText, handleToAddresses]);
 
     useEffect(() => {
         formState.setFieldValue('city', translatedCities[0]);
