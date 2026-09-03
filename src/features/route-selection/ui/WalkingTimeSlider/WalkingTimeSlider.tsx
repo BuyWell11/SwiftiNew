@@ -2,7 +2,7 @@ import { Slider } from '@mui/material';
 import DirectionsWalkIcon from '@mui/icons-material/DirectionsWalk';
 import HelpOutlineIcon from '@mui/icons-material/HelpOutline';
 import HtmlTooltip from '@shared/ui/HtmlTooltip';
-import styles from './AddressesInputBlock.module.scss';
+import styles from './WalkingTimeSlider.module.scss';
 
 interface Props {
   value: number;
@@ -12,7 +12,7 @@ interface Props {
 
 function WalkingTimeSlider({ value, tooltip, onChange }: Props) {
   return (
-    <div className={styles.customSlider}>
+    <div className={styles.slider}>
       <DirectionsWalkIcon sx={{ color: '#2D2D2D' }} />
       <Slider
         name="time"
@@ -27,7 +27,7 @@ function WalkingTimeSlider({ value, tooltip, onChange }: Props) {
         color="primary"
       />
       <HtmlTooltip title={<span>{tooltip}</span>}>
-        <HelpOutlineIcon className={styles.sliderIcon} sx={{ color: '#8D6EC8' }} />
+        <HelpOutlineIcon className={styles.icon} />
       </HtmlTooltip>
     </div>
   );

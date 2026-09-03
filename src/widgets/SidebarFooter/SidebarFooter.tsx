@@ -7,7 +7,7 @@ import IconLink from '@shared/ui/IconLink';
 import CustomSelect from '@shared/ui/CustomSelect';
 import SlideMenuWave from '@shared/assets/SlideMenuWave.svg';
 import { translate } from '@shared/services/LocalizationService';
-import { changeLocalization } from '@entities/user/userSlice';
+import { changeLocalization } from '@entities/user';
 import { useAppDispatch, useAppSelector } from '@shared/hooks/reduxHooks';
 import { CustomSelectOption } from '@shared/types/CustomSelectOption';
 import { localizationOptions } from '@shared/config/vars';

@@ -1,0 +1,13 @@
+@use '../../../../app/styles/variables' as *;
+@use '../../../../app/styles/mixins' as *;
+
+.slider {
+  @include flex-row(8px);
+  width: 300px;
+  margin-bottom: 16px;
+  align-items: center;
+}
+
+.icon {
+  color: $color-accent;
+}

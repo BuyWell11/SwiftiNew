@@ -7,14 +7,14 @@ import { useAppSelector } from '@shared/hooks/reduxHooks';
 import { useGetCitiesQuery } from '@shared/api/endpoints/catalogApi';
 import { translate } from '@shared/services/LocalizationService';
 import type { CustomSelectOption } from '@shared/types/CustomSelectOption';
-import type { Route } from '@entities/models/Route';
+import type { Route } from '@entities/route';
 import { getErrorMessage } from '@shared/api/getErrorMessage';
 import { useToast } from '@shared/hooks/useToast';
-import { useUserGeolocation } from './useUserGeolocation';
-import { useAddressSuggestions } from './useAddressSuggestions';
-import AddressAutocompleteField from './AddressAutocompleteField';
-import WalkingTimeSlider from './WalkingTimeSlider';
-import type { AddressesFormValues } from './AddressesInputBlock.types';
+import { useUserGeolocation } from '../../lib/useUserGeolocation';
+import { useAddressSuggestions } from '../../lib/useAddressSuggestions';
+import AddressAutocompleteField from '@features/route-selection/ui/AddressAutocompleteField';
+import WalkingTimeSlider from '@features/route-selection/ui/WalkingTimeSlider';
+import type { AddressesFormValues } from '../../model/AddressesInputBlock.types';
 
 interface Props {
   handleSubmit: (route: Route) => void;
@@ -123,34 +123,30 @@ function AddressesInputBlock({ handleSubmit }: Props) {
           tooltip={translate('mainPage.searchField.tooltip')}
           onChange={(value) => void setFieldValue('time', value)}
         />
-        <div className={styles.addressTextfieldBlock}>
-          <AddressAutocompleteField
-            id="from"
-            label={translate('mainPage.searchField.from')}
-            placeholder={translate('mainPage.searchField.placeHolder')}
-            value={values.from}
-            inputValue={values.fromText}
-            options={values.fromOptions}
-            noOptionsText={translate('mainPage.searchField.noOptionText')}
-            onChange={(value) => void setFieldValue('from', value)}
-            onInputChange={(value) => void setFieldValue('fromText', value)}
-            isOptionEqualToValue={(option, value) => option.id === value.id}
-          />
-        </div>
-        <div className={styles.addressTextfieldBlock}>
-          <AddressAutocompleteField
-            id="to"
-            label={translate('mainPage.searchField.to')}
-            placeholder={translate('mainPage.searchField.placeHolder')}
-            value={values.to}
-            inputValue={values.toText}
-            options={values.toOptions}
-            noOptionsText={translate('mainPage.searchField.noOptionText')}
-            onChange={(value) => void setFieldValue('to', value)}
-            onInputChange={(value) => void setFieldValue('toText', value)}
-            isOptionEqualToValue={(option, value) => option.label === value.label}
-          />
-        </div>
+        <AddressAutocompleteField
+          id="from"
+          label={translate('mainPage.searchField.from')}
+          placeholder={translate('mainPage.searchField.placeHolder')}
+          value={values.from}
+          inputValue={values.fromText}
+          options={values.fromOptions}
+          noOptionsText={translate('mainPage.searchField.noOptionText')}
+          onChange={(value) => void setFieldValue('from', value)}
+          onInputChange={(value) => void setFieldValue('fromText', value)}
+          isOptionEqualToValue={(option, value) => option.id === value.id}
+        />
+        <AddressAutocompleteField
+          id="to"
+          label={translate('mainPage.searchField.to')}
+          placeholder={translate('mainPage.searchField.placeHolder')}
+          value={values.to}
+          inputValue={values.toText}
+          options={values.toOptions}
+          noOptionsText={translate('mainPage.searchField.noOptionText')}
+          onChange={(value) => void setFieldValue('to', value)}
+          onInputChange={(value) => void setFieldValue('toText', value)}
+          isOptionEqualToValue={(option, value) => option.label === value.label}
+        />
         <label className={styles.agreeBlock}>
           <input className={styles.agreeCheckbox} type="checkbox" name="agree" checked={values.agree} onChange={formState.handleChange} />
           <span>{translate('mainPage.searchField.termOfUseAcception')}</span>

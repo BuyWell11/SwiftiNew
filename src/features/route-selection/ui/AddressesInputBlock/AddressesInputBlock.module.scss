@@ -1,5 +1,5 @@
-@use '../../../app/styles/variables' as *;
-@use '../../../app/styles/mixins' as *;
+@use '../../../../app/styles/variables' as *;
+@use '../../../../app/styles/mixins' as *;
 
 .addressesInputBlock {
   display: flex;
@@ -33,26 +33,6 @@
   color: $color-text;
   margin-bottom: 16px;
   margin-left: 16px;
-}
-
-.customSlider {
-  @include flex-row(8px);
-  width: 300px;
-  margin-bottom: 16px;
-  align-items: center;
-}
-
-.textfieldLabel {
-  align-self: flex-start;
-  font-weight: 500;
-  font-size: $font-size-body;
-  line-height: 114%;
-  color: $color-text;
-}
-
-.addressTextfieldBlock {
-  @include flex-column(12px);
-  margin-bottom: 16px;
 }
 
 .agreeBlock {
@@ -93,8 +73,4 @@
     cursor: not-allowed;
     opacity: 0.6;
   }
-}
-
-.sliderIcon {
-  color: $color-accent;
 }

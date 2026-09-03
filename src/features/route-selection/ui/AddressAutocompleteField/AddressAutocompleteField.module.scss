@@ -1,0 +1,15 @@
+@use '../../../../app/styles/variables' as *;
+@use '../../../../app/styles/mixins' as *;
+
+.field {
+  @include flex-column(12px);
+  margin-bottom: 16px;
+}
+
+.label {
+  align-self: flex-start;
+  font-weight: 500;
+  font-size: $font-size-body;
+  line-height: 114%;
+  color: $color-text;
+}

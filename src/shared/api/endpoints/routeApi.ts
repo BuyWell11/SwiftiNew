@@ -1,6 +1,6 @@
 import { baseApi } from '@shared/api/baseApi';
 import { API_ROUTES } from '@shared/api/apiRoutes';
-import type { Route } from '@entities/models/Route';
+import type { Route } from '@entities/route';
 import type { WaysDTO } from '@shared/api/types/WaysDTO';
 
 export const routeApi = baseApi.injectEndpoints({

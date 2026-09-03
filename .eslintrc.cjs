@@ -26,6 +26,7 @@ module.exports = {
     '@typescript-eslint/no-empty-object-type': 'off',
     'import/no-unresolved': 'error',
     'import/no-duplicates': 'error',
+    'import/no-cycle': 'error',
     'boundaries/element-types': [
       'error',
       {

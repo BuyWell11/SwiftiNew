@@ -1,17 +1,7 @@
-@use '../../../app/styles/variables' as *;
-@use '../../../app/styles/mixins' as *;
+@use '../../../../app/styles/variables' as *;
+@use '../../../../app/styles/mixins' as *;
 
-.waySelector {
-  @include flex-column(16px);
-}
-
-.linkButtonBox {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-}
-
-.taxiOrderButton {
+.button {
   @include button-reset;
   display: inline-flex;
   align-items: center;

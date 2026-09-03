@@ -1,5 +1,5 @@
 import { configureStore } from '@reduxjs/toolkit';
-import userReducer from '@entities/user/userSlice';
+import userReducer from '@entities/user';
 import { baseApi } from '@shared/api/baseApi';
 import { addressApi } from '@shared/api/endpoints/addressApi';
 import { setCurrentLocale } from '@shared/config/locale';

@@ -1,0 +1,25 @@
+@use '../../../../app/styles/variables' as *;
+@use '../../../../app/styles/mixins' as *;
+
+.section {
+  @include flex-column(20px);
+}
+
+.list {
+  @include flex-column(12px);
+  margin-left: 24px;
+}
+
+.title {
+  font-weight: 600;
+  font-size: $font-size-heading;
+  line-height: 100%;
+  color: $color-text;
+}
+
+.body {
+  font-weight: 500;
+  font-size: $font-size-small;
+  line-height: 114%;
+  color: $color-text;
+}

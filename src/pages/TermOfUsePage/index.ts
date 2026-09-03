@@ -1,1 +1,1 @@
-export { default } from './TermOfUsePage';
+export { default } from './ui/TermOfUsePage';

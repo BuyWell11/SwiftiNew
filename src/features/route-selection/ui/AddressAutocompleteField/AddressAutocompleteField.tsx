@@ -1,6 +1,6 @@
 import { Autocomplete, TextField } from '@mui/material';
 import type { AddressDTO } from '@shared/api/types/AddressDTO';
-import styles from './AddressesInputBlock.module.scss';
+import styles from './AddressAutocompleteField.module.scss';
 
 interface Props {
   id: string;
@@ -28,8 +28,8 @@ function AddressAutocompleteField({
   isOptionEqualToValue,
 }: Props) {
   return (
-    <div>
-      <span className={styles.textfieldLabel}>{label}</span>
+    <div className={styles.field}>
+      <span className={styles.label}>{label}</span>
       <Autocomplete
         disablePortal
         disableListWrap

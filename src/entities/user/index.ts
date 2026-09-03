@@ -1,2 +1,2 @@
-export { default } from './userSlice';
-export * from './userSlice';
+export { default } from './model/userSlice';
+export * from './model/userSlice';

@@ -7,7 +7,7 @@
     "dev": "vite",
     "build": "tsc -b && vite build",
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx --report-unused-disable-directives --max-warnings 0",
-    "lint:styles": "stylelint \"src/**/*.{scss,css}\"",
+    "lint:styles": "stylelint \"src/**/*.{scss,css}\" && node scripts/check-scss-cycles.mjs",
     "typecheck": "tsc --noEmit",
     "check": "npm run typecheck && npm run lint && npm run lint:styles && npm run build",
     "preview": "vite preview",

@@ -1,0 +1,7 @@
+@use '../../../../app/styles/variables' as *;
+@use '../../../../app/styles/mixins' as *;
+
+.links {
+  @include flex-row(0);
+  justify-content: space-between;
+}
