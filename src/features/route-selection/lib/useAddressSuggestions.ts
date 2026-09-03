@@ -5,6 +5,7 @@ import { useDebounce } from '@shared/hooks/useDebounce';
 import { useToast } from '@shared/hooks/useToast';
 import type { AddressDTO } from '@shared/api/types/AddressDTO';
 import type { CustomSelectOption } from '@shared/types/CustomSelectOption';
+import { YANDEX_API } from '@shared/config/vars';
 
 type UseAddressSuggestionsParams = {
   address: string;
@@ -20,7 +21,7 @@ export function useAddressSuggestions({ address, city, ignoredAddress, onChange,
   const debouncedAddress = useDebounce(address.trim(), 1000);
 
   useEffect(() => {
-    if (!city || debouncedAddress === ignoredAddress) return;
+    if (!YANDEX_API || !city || debouncedAddress === ignoredAddress) return;
 
     if (!debouncedAddress) {
       onChange([]);

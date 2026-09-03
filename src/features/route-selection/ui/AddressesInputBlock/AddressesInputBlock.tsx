@@ -15,6 +15,7 @@ import { useAddressSuggestions } from '../../lib/useAddressSuggestions';
 import AddressAutocompleteField from '@features/route-selection/ui/AddressAutocompleteField';
 import WalkingTimeSlider from '@features/route-selection/ui/WalkingTimeSlider';
 import type { AddressesFormValues } from '../../model/AddressesInputBlock.types';
+import { BACKEND_LINK } from '@shared/config/vars';
 
 interface Props {
   handleSubmit: (route: Route) => void;
@@ -23,7 +24,7 @@ interface Props {
 function AddressesInputBlock({ handleSubmit }: Props) {
   const { showToast } = useToast();
   const localization = useAppSelector((state) => state.user.localization);
-  const { data: cities = [], error: citiesError } = useGetCitiesQuery();
+  const { data: cities = [], error: citiesError } = useGetCitiesQuery(undefined, { skip: !BACKEND_LINK });
 
   const translatedCities = useMemo(
     () =>

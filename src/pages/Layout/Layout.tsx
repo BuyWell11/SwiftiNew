@@ -7,11 +7,12 @@ import { getErrorMessage } from '@shared/api/getErrorMessage';
 import { useToast } from '@shared/hooks/useToast';
 import Footer from '@widgets/Footer';
 import { Outlet } from 'react-router-dom';
+import { BACKEND_LINK } from '@shared/config/vars';
 function Layout() {
   const [isSidebarOpen, setSidebarOpen] = useState<boolean>(false);
 
   const { showToast } = useToast();
-  const { error: citiesError } = useGetCitiesQuery();
+  const { error: citiesError } = useGetCitiesQuery(undefined, { skip: !BACKEND_LINK });
 
   useEffect(() => {
     if (citiesError) {

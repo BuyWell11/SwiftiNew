@@ -1,8 +1,8 @@
 import type { CustomSelectOption } from '@shared/types/CustomSelectOption';
 
-export const BACKEND_LINK = import.meta.env.VITE_BACKEND_LINK;
+export const BACKEND_LINK = import.meta.env.VITE_BACKEND_LINK?.trim() ?? '';
 
-export const YANDEX_API = import.meta.env.VITE_YANDEX_API;
+export const YANDEX_API = import.meta.env.VITE_YANDEX_API?.trim() ?? '';
 
 export const TG = '@swifti_app';
 

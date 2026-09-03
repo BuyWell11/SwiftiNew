@@ -4,6 +4,7 @@ import { getErrorMessage } from '@shared/api/getErrorMessage';
 import { useToast } from '@shared/hooks/useToast';
 import type { Route } from '@entities/route';
 import type { Way } from '@shared/types/Way';
+import { BACKEND_LINK } from '@shared/config/vars';
 
 export function useRouteSelection() {
   const { showToast } = useToast();
@@ -16,6 +17,12 @@ export function useRouteSelection() {
   const handleSubmit = useCallback(
     async (route: Route) => {
       setRequestError(null);
+      if (!BACKEND_LINK) {
+        const message = 'Backend URL is not configured';
+        setRequestError(message);
+        showToast(message, 'error');
+        return;
+      }
       try {
         const data = await getRoute(route).unwrap();
         setOptimalWay(data.optimal);
