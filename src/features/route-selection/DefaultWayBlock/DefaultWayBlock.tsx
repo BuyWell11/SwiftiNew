@@ -1,5 +1,4 @@
 import styles from './DefaultWayBlock.module.scss';
-import { Box, ButtonBase } from '@mui/material';
 import LocalTaxiIcon from '@mui/icons-material/LocalTaxi';
 import { Way } from '@shared/types/Way';
 import { translate } from '@shared/services/LocalizationService';
@@ -12,28 +11,28 @@ interface Props {
 
 function DefaultWayBlock({ selected, handleClick, wayData }: Props) {
   return (
-    <ButtonBase onClick={handleClick}>
-      <Box className={selected ? styles.wayBlockSelected : styles.wayBlock}>
-        <Box className={styles.priceBlock}>
+    <button type="button" className={styles.wayBlockButton} onClick={handleClick}>
+      <div className={selected ? styles.wayBlockSelected : styles.wayBlock}>
+        <div className={styles.priceBlock}>
           <span>{translate('mainPage.resultField.baseResult.title')}</span>
-          <Box>
+          <div>
             <span>
               {translate('mainPage.resultField.otherUnits.from')}&nbsp;{wayData.price}&nbsp;
               {translate('mainPage.resultField.otherUnits.currency')}
             </span>
-          </Box>
-        </Box>
+          </div>
+        </div>
         <hr className={selected ? styles.wayBlockSeparatorSelected : styles.wayBlockSeparator} />
-        <Box className={styles.travelTimeBlock}>
-          <Box className={styles.timeBlock}>
+        <div className={styles.travelTimeBlock}>
+          <div className={styles.timeBlock}>
             <LocalTaxiIcon />
             <span>
               {wayData.taxiTime} {translate('mainPage.resultField.otherUnits.time')}
             </span>
-          </Box>
-        </Box>
-      </Box>
-    </ButtonBase>
+          </div>
+        </div>
+      </div>
+    </button>
   );
 }
 

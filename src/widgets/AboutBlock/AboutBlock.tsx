@@ -1,5 +1,4 @@
 import styles from './AboutBlock.module.scss';
-import { Box } from '@mui/material';
 import TopicText from '@shared/ui/TopicText';
 import { translate } from '@shared/services/LocalizationService';
 import AdvantagesCarousel from '@widgets/AdvantagesCarousel';
@@ -21,23 +20,23 @@ function AboutBlock() {
   });
 
   return (
-    <Box className={styles.aboutBlock} id="about">
+    <div className={styles.aboutBlock} id="about">
       <TopicText>{translate('mainPage.aboutUs.title')}</TopicText>
-      <Box className={styles.aboutBlockContent}>
-        <Box className={styles.paragraph}>
+      <div className={styles.aboutBlockContent}>
+        <div className={styles.paragraph}>
           <span>{translate('mainPage.aboutUs.content.firstParagraf')}</span>
-        </Box>
-        <Box className={styles.paragraphIndented}>
+        </div>
+        <div className={styles.paragraphIndented}>
           <span>{translate('mainPage.aboutUs.content.secondParagraf')}</span>
-        </Box>
-      </Box>
-      <Box className={styles.aboutBlockContentAdvantages}>
-        <Box className={styles.advantagesTitle}>
+        </div>
+      </div>
+      <div className={styles.aboutBlockContentAdvantages}>
+        <div className={styles.advantagesTitle}>
           <span>{translate('mainPage.aboutUs.advantages.title')}</span>
-        </Box>
+        </div>
         <AdvantagesCarousel data={advantages} />
-      </Box>
-    </Box>
+      </div>
+    </div>
   );
 }
 

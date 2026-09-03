@@ -1,22 +1,20 @@
 import styles from './AddressesInputBlock.module.scss';
-import { Autocomplete, Box, Button, Checkbox, Slider, Stack, TextField } from '@mui/material';
 import { useFormik } from 'formik';
+import { useCallback, useEffect, useMemo } from 'react';
 import CustomSelect from '@shared/ui/CustomSelect';
-import DirectionsWalkIcon from '@mui/icons-material/DirectionsWalk';
-import HelpOutlineIcon from '@mui/icons-material/HelpOutline';
 import PlaceIcon from '@mui/icons-material/Place';
-import { Fragment, useEffect, useMemo, useRef } from 'react';
-//import * as Yup from 'yup';
 import { useAppSelector } from '@shared/hooks/reduxHooks';
 import { useGetCitiesQuery } from '@shared/api/endpoints/catalogApi';
 import { translate } from '@shared/services/LocalizationService';
-import { CustomSelectOption } from '@shared/types/CustomSelectOption';
-import { AddressDTO } from '@shared/api/types/AddressDTO';
-import { Route } from '@entities/models/Route';
-import HtmlTooltip from '@shared/ui/HtmlTooltip';
-import { useToast } from '@shared/hooks/useToast';
+import type { CustomSelectOption } from '@shared/types/CustomSelectOption';
+import type { Route } from '@entities/models/Route';
 import { getErrorMessage } from '@shared/api/getErrorMessage';
-import { useLazyGetYandexAddressesQuery } from '@shared/api/endpoints/addressApi';
+import { useToast } from '@shared/hooks/useToast';
+import { useUserGeolocation } from './useUserGeolocation';
+import { useAddressSuggestions } from './useAddressSuggestions';
+import AddressAutocompleteField from './AddressAutocompleteField';
+import WalkingTimeSlider from './WalkingTimeSlider';
+import type { AddressesFormValues } from './AddressesInputBlock.types';
 
 interface Props {
   handleSubmit: (route: Route) => void;
@@ -24,241 +22,144 @@ interface Props {
 
 function AddressesInputBlock({ handleSubmit }: Props) {
   const { showToast } = useToast();
-  const [getYandexAddresses] = useLazyGetYandexAddressesQuery();
   const localization = useAppSelector((state) => state.user.localization);
   const { data: cities = [], error: citiesError } = useGetCitiesQuery();
-  const locale = localization.value;
 
   const translatedCities = useMemo(
-    () => (locale ? cities.map((city) => ({ label: translate(`mainPage.searchField.city.${city.label}`), value: city.value })) : []),
-    [cities, locale],
+    () =>
+      localization.value ? cities.map((city) => ({ label: translate(`mainPage.searchField.city.${city.label}`), value: city.value })) : [],
+    [cities, localization.value],
   );
+  const myPositionLabel = translate('mainPage.searchField.myLocation');
+  const position = useUserGeolocation(myPositionLabel);
 
-  const myPositionLabel = useMemo(() => (locale ? translate('mainPage.searchField.myLocation') : ''), [locale]);
-  const fromOptionsLength = useRef(0);
+  const formState = useFormik<AddressesFormValues>({
+    initialValues: {
+      city: null,
+      time: 0,
+      from: null,
+      to: null,
+      fromText: '',
+      toText: '',
+      fromOptions: [],
+      toOptions: [],
+      myPosition: null,
+      agree: false,
+    },
+    onSubmit: (values) => {
+      if (!values.city || !values.from || !values.to) return;
+
+      handleSubmit({
+        startPoint: `${values.from.latitude},${values.from.longitude}`,
+        endPoint: `${values.to.latitude},${values.to.longitude}`,
+        walkingTime: values.time,
+        city: values.city.value,
+      });
+    },
+  });
+  const { values, setFieldValue } = formState;
 
   useEffect(() => {
     if (citiesError) showToast(getErrorMessage(citiesError, 'Unable to load cities'), 'error');
   }, [citiesError, showToast]);
 
-  const marks = [
-    {
-      value: 0,
-    },
-    {
-      value: 5,
-    },
-    {
-      value: 10,
-    },
-  ];
+  useEffect(() => {
+    if (!position) return;
 
-  type State = {
-    city: CustomSelectOption;
-    time: number;
-    from: AddressDTO | null;
-    to: AddressDTO | null;
-    fromText: string;
-    toText: string;
-    fromOptions: AddressDTO[];
-    toOptions: AddressDTO[];
-    myPosition: AddressDTO | null;
-    agree: boolean;
-  };
+    void setFieldValue('myPosition', position);
+    if (values.fromOptions.length === 0) {
+      void setFieldValue('fromOptions', [position]);
+    }
+  }, [position, setFieldValue, values.fromOptions.length]);
 
-  const initialValue: State = {
-    city: translatedCities[0],
-    time: 0,
-    from: null,
-    fromText: '',
-    toText: '',
-    fromOptions: [],
-    toOptions: [],
-    to: null,
-    myPosition: null,
-    agree: false,
-  };
+  useEffect(() => {
+    if (translatedCities[0] && values.city?.value !== translatedCities[0].value) {
+      void setFieldValue('city', translatedCities[0]);
+    }
+  }, [setFieldValue, translatedCities, values.city?.value]);
 
-  const formState = useFormik({
-    initialValues: initialValue,
-    onSubmit: (values) => {
-      const dto: Route = {
-        startPoint: `${values.from?.latitude},${values.from?.longitude}`,
-        endPoint: `${values.to?.latitude},${values.to?.longitude}`,
-        walkingTime: values.time,
-        city: values.city.value,
-      };
-      handleSubmit(dto);
+  const handleFromOptionsChange = useCallback(
+    (options: AddressesFormValues['fromOptions']) => {
+      void setFieldValue('fromOptions', options);
     },
+    [setFieldValue],
+  );
+  const handleToOptionsChange = useCallback(
+    (options: AddressesFormValues['toOptions']) => {
+      void setFieldValue('toOptions', options);
+    },
+    [setFieldValue],
+  );
+
+  useAddressSuggestions({
+    address: values.fromText,
+    city: values.city,
+    ignoredAddress: myPositionLabel,
+    onChange: handleFromOptionsChange,
+    errorMessage: 'Unable to load departure addresses',
   });
-  const { values, setFieldValue } = formState;
-  fromOptionsLength.current = values.fromOptions.length;
-
-  useEffect(() => {
-    const successHandler = (position: GeolocationPosition) => {
-      const { latitude, longitude } = position.coords;
-      const myPosition = {
-        label: myPositionLabel,
-        latitude: latitude,
-        longitude: longitude,
-        id: 0,
-      };
-      void setFieldValue('myPosition', myPosition);
-      if (fromOptionsLength.current === 0) {
-        void setFieldValue('fromOptions', [myPosition]);
-      }
-    };
-
-    const errorHandler = (error: GeolocationPositionError) => {
-      void error;
-      showToast('Unable to access current location', 'error');
-    };
-
-    const watchId = navigator.geolocation.watchPosition(successHandler, errorHandler);
-
-    navigator.geolocation.getCurrentPosition(successHandler, errorHandler);
-
-    return () => {
-      navigator.geolocation.clearWatch(watchId);
-    };
-  }, [myPositionLabel, setFieldValue, showToast]);
-
-  useEffect(() => {
-    const address = values.fromText;
-    const city = values.city;
-    if (!city || address === myPositionLabel) return;
-    if (address === '') {
-      void setFieldValue('fromOptions', []);
-      return;
-    }
-    const timer = window.setTimeout(() => {
-      void getYandexAddresses({ address, city })
-        .unwrap()
-        .then((data) => {
-          void setFieldValue('fromOptions', data);
-        })
-        .catch((error: unknown) => showToast(getErrorMessage(error, 'Unable to load departure addresses'), 'error'));
-    }, 1000);
-    return () => window.clearTimeout(timer);
-  }, [values.fromText, values.city, getYandexAddresses, myPositionLabel, setFieldValue, showToast]);
-
-  useEffect(() => {
-    const address = values.toText;
-    const city = values.city;
-    if (!city) return;
-    if (address === '') {
-      void setFieldValue('toOptions', []);
-      return;
-    }
-    const timer = window.setTimeout(() => {
-      void getYandexAddresses({ address, city })
-        .unwrap()
-        .then((data) => {
-          void setFieldValue('toOptions', data);
-        })
-        .catch((error: unknown) => showToast(getErrorMessage(error, 'Unable to load destination addresses'), 'error'));
-    }, 1000);
-    return () => window.clearTimeout(timer);
-  }, [values.toText, values.city, getYandexAddresses, setFieldValue, showToast]);
-
-  useEffect(() => {
-    if (translatedCities[0]) void setFieldValue('city', translatedCities[0]);
-  }, [translatedCities, setFieldValue]);
+  useAddressSuggestions({
+    address: values.toText,
+    city: values.city,
+    onChange: handleToOptionsChange,
+    errorMessage: 'Unable to load destination addresses',
+  });
 
   return (
-    <Box className={styles.addressesInputBlock}>
+    <div className={styles.addressesInputBlock}>
       <form onSubmit={formState.handleSubmit} className={styles.addressInputBlockForm}>
-        <Stack direction="row" spacing={0.5}>
+        <div className={styles.citySelectRow}>
           <PlaceIcon sx={{ color: '#8D6EC8' }} />
           <CustomSelect
             options={translatedCities}
-            selectedOption={formState.values.city}
-            handleClick={(city: CustomSelectOption) => formState.setFieldValue('city', city)}
+            selectedOption={values.city}
+            handleClick={(city: CustomSelectOption) => void setFieldValue('city', city)}
           />
-        </Stack>
+        </div>
         <hr className={styles.separator} />
         <span className={styles.citySelectBlock}>{translate('mainPage.searchField.title')}</span>
-        <Stack direction="row" spacing={1} className={styles.customSlider}>
-          <DirectionsWalkIcon sx={{ color: '#2D2D2D' }} />
-          <Slider
-            name="time"
-            defaultValue={0}
-            value={formState.values.time}
-            step={null}
-            valueLabelDisplay="auto"
-            marks={marks}
-            max={10}
-            onChange={formState.handleChange}
-            color="primary"
-          />
-          <HtmlTooltip
-            title={
-              <Fragment>
-                <span>{translate('mainPage.searchField.tooltip')}</span>
-              </Fragment>
-            }
-          >
-            <HelpOutlineIcon className={styles.sliderIcon} sx={{ color: '#8D6EC8' }} />
-          </HtmlTooltip>
-        </Stack>
-        <Stack direction="column" spacing={1.5} className={styles.addressTextfieldBlock}>
-          <span className={styles.textfieldLabel}>{translate('mainPage.searchField.from')}</span>
-          <Autocomplete
-            className={styles.addressTextfield}
-            disablePortal
-            disableListWrap
-            value={formState.values.from}
-            inputValue={formState.values.fromText}
+        <WalkingTimeSlider
+          value={values.time}
+          tooltip={translate('mainPage.searchField.tooltip')}
+          onChange={(value) => void setFieldValue('time', value)}
+        />
+        <div className={styles.addressTextfieldBlock}>
+          <AddressAutocompleteField
             id="from"
-            options={formState.values.fromOptions}
-            filterOptions={(options) => options}
+            label={translate('mainPage.searchField.from')}
+            placeholder={translate('mainPage.searchField.placeHolder')}
+            value={values.from}
+            inputValue={values.fromText}
+            options={values.fromOptions}
             noOptionsText={translate('mainPage.searchField.noOptionText')}
-            getOptionLabel={(option) => option.label}
+            onChange={(value) => void setFieldValue('from', value)}
+            onInputChange={(value) => void setFieldValue('fromText', value)}
             isOptionEqualToValue={(option, value) => option.id === value.id}
-            sx={{ width: 300 }}
-            onChange={(e, value) => {
-              formState.setFieldValue('from', value);
-            }}
-            onInputChange={(event, value) => formState.setFieldValue('fromText', value)}
-            renderInput={(params) => <TextField {...params} label={translate('mainPage.searchField.placeHolder')} />}
           />
-        </Stack>
-        <Stack direction="column" spacing={1.5} className={styles.addressTextfieldBlock}>
-          <span className={styles.textfieldLabel}>{translate('mainPage.searchField.to')}</span>
-          <Autocomplete
-            className={styles.addressTextfield}
-            disablePortal
-            disableListWrap
-            value={formState.values.to}
-            inputValue={formState.values.toText}
+        </div>
+        <div className={styles.addressTextfieldBlock}>
+          <AddressAutocompleteField
             id="to"
-            options={formState.values.toOptions}
-            filterOptions={(options) => options}
+            label={translate('mainPage.searchField.to')}
+            placeholder={translate('mainPage.searchField.placeHolder')}
+            value={values.to}
+            inputValue={values.toText}
+            options={values.toOptions}
             noOptionsText={translate('mainPage.searchField.noOptionText')}
-            getOptionLabel={(option) => option.label}
+            onChange={(value) => void setFieldValue('to', value)}
+            onInputChange={(value) => void setFieldValue('toText', value)}
             isOptionEqualToValue={(option, value) => option.label === value.label}
-            sx={{ width: 300 }}
-            onChange={(e, value) => {
-              formState.setFieldValue('to', value);
-            }}
-            onInputChange={(event, value) => formState.setFieldValue('toText', value)}
-            renderInput={(params) => <TextField {...params} label={translate('mainPage.searchField.placeHolder')} />}
           />
-        </Stack>
-        <Stack direction="row" spacing={1} className={styles.agreeBlock}>
-          <Checkbox name="agree" checked={formState.values.agree} onChange={formState.handleChange} />
+        </div>
+        <label className={styles.agreeBlock}>
+          <input className={styles.agreeCheckbox} type="checkbox" name="agree" checked={values.agree} onChange={formState.handleChange} />
           <span>{translate('mainPage.searchField.termOfUseAcception')}</span>
-        </Stack>
-        <Button
-          variant="contained"
-          className={styles.addressesInputButton}
-          type="submit"
-          disabled={!formState.values.agree || !formState.values.from || !formState.values.to}
-        >
+        </label>
+        <button className={styles.addressesInputButton} type="submit" disabled={!values.agree || !values.from || !values.to}>
           {translate('mainPage.searchField.findRoute')}
-        </Button>
+        </button>
       </form>
-    </Box>
+    </div>
   );
 }
 

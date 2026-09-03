@@ -1,5 +1,5 @@
 import styles from './GuidePage.module.scss';
-import { Box, Toolbar } from '@mui/material';
+import {Toolbar } from '@mui/material';
 import { translate } from '@shared/services/LocalizationService';
 function GuidePage() {
   const data: string[] = [];
@@ -8,8 +8,8 @@ function GuidePage() {
   }
 
   return (
-    <Box className={styles.page}>
-      <Box className={styles.guidePage}>
+    <div className={styles.page}>
+      <div className={styles.guidePage}>
         <Toolbar />
         <span className={styles.title}>{translate('userGuidePage.title')}</span>
         <span className={styles.caption}>{translate('userGuidePage.subtitle')}</span>
@@ -21,8 +21,8 @@ function GuidePage() {
           ))}
         </ol>
         <span className={styles.bodyRegular}>{translate('userGuidePage.lastWords')}</span>
-      </Box>
-    </Box>
+      </div>
+    </div>
   );
 }
 

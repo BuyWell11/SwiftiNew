@@ -1,5 +1,5 @@
 import styles from './TermOfUsePage.module.scss';
-import { Box, Toolbar } from '@mui/material';
+import {Toolbar } from '@mui/material';
 import { translate } from '@shared/services/LocalizationService';
 function TermOfUsePage() {
   const generalProvisions: string[] = [];
@@ -23,16 +23,16 @@ function TermOfUsePage() {
   }
 
   return (
-    <Box className={styles.page}>
-      <Box className={styles.termOfUsePage}>
+    <div className={styles.page}>
+      <div className={styles.termOfUsePage}>
         <Toolbar />
         <span className={styles.title}>{translate('termOfUsePage.title')}</span>
         <span className={styles.caption}>{translate('termOfUsePage.subtitle')}</span>
-        <Box className={styles.section}>
+        <div className={styles.section}>
           <span className={styles.body}>{translate('termOfUsePage.disclaimer.part1')}</span>
           <span className={styles.body}>{translate('termOfUsePage.disclaimer.part2')}</span>
-        </Box>
-        <Box className={styles.section}>
+        </div>
+        <div className={styles.section}>
           <span className={styles.sectionTitle}>1. {translate('termOfUsePage.content.generalProvisions.title')}</span>
           <ol>
             {generalProvisions.map((item, index) => (
@@ -41,8 +41,8 @@ function TermOfUsePage() {
               </li>
             ))}
           </ol>
-        </Box>
-        <Box className={styles.section}>
+        </div>
+        <div className={styles.section}>
           <span className={styles.sectionTitle}>2. {translate('termOfUsePage.content.serviceUsage.title')}</span>
           <ol>
             {serviceUsage.map((item, index) => (
@@ -51,8 +51,8 @@ function TermOfUsePage() {
               </li>
             ))}
           </ol>
-        </Box>
-        <Box className={styles.section}>
+        </div>
+        <div className={styles.section}>
           <span className={styles.sectionTitle}>3. {translate('termOfUsePage.content.otherProvision.title')}</span>
           <ol>
             {otherProvision.map((item, index) => (
@@ -61,8 +61,8 @@ function TermOfUsePage() {
               </li>
             ))}
           </ol>
-        </Box>
-        <Box className={styles.section}>
+        </div>
+        <div className={styles.section}>
           <span className={styles.sectionTitle}>4. {translate('termOfUsePage.content.copyrightInfo.title')}</span>
           <ol>
             {copyrightInfo.map((item, index) => (
@@ -71,11 +71,11 @@ function TermOfUsePage() {
               </li>
             ))}
           </ol>
-        </Box>
+        </div>
         <span className={styles.bodyRegular}>{translate('termOfUsePage.publicationDate')}</span>
         <span className={styles.bodyRegular}>{translate('termOfUsePage.effectiveDate')}</span>
-      </Box>
-    </Box>
+      </div>
+    </div>
   );
 }
 

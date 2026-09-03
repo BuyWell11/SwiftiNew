@@ -1,17 +1,17 @@
 import styles from './LinkButton.module.scss';
-import { Box, Button, ButtonProps } from '@mui/material';
-import { ReactNode } from 'react';
-interface Props extends ButtonProps {
+import type { AnchorHTMLAttributes, ReactNode } from 'react';
+
+interface Props extends AnchorHTMLAttributes<HTMLAnchorElement> {
   href: string;
   handleClick?: () => void;
   children?: ReactNode;
 }
 
-function LinkButton({ href, handleClick, children }: Props) {
+function LinkButton({ href, handleClick, children, ...props }: Props) {
   return (
-    <Button href={href} target="_blank" onClick={handleClick} variant="outlined" className={styles.linkButton}>
-      <Box className={styles.iconsBox}>{children}</Box>
-    </Button>
+    <a href={href} target="_blank" rel="noreferrer" onClick={handleClick} className={styles.linkButton} {...props}>
+      <span className={styles.iconsBox}>{children}</span>
+    </a>
   );
 }
 

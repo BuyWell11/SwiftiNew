@@ -1,5 +1,4 @@
 import styles from './OptimalWayBlock.module.scss';
-import { Box, ButtonBase } from '@mui/material';
 import ThumbUpOffAltIcon from '@mui/icons-material/ThumbUpOffAlt';
 import ArrowRightAltIcon from '@mui/icons-material/ArrowRightAlt';
 import DirectionsWalkIcon from '@mui/icons-material/DirectionsWalk';
@@ -15,45 +14,45 @@ interface Props {
 
 function OptimalWayBlock({ selected, handleClick, wayData }: Props) {
   return (
-    <ButtonBase onClick={handleClick}>
-      <Box className={selected ? styles.wayBlockSelected : styles.wayBlock}>
-        <Box className={styles.priceBlock}>
-          <Box>
+    <button type="button" className={styles.wayBlockButton} onClick={handleClick}>
+      <div className={selected ? styles.wayBlockSelected : styles.wayBlock}>
+        <div className={styles.priceBlock}>
+          <div>
             <ThumbUpOffAltIcon sx={{ color: '#03AD52' }} />
             <span>{translate('mainPage.resultField.optimalResult.title')}</span>
-          </Box>
-          <Box>
+          </div>
+          <div>
             <span>
               {translate('mainPage.resultField.otherUnits.from')}&nbsp;{wayData.price}&nbsp;
               {translate('mainPage.resultField.otherUnits.currency')}`
             </span>
-          </Box>
-        </Box>
+          </div>
+        </div>
         <hr className={selected ? styles.wayBlockSeparatorSelected : styles.wayBlockSeparator} />
-        <Box className={styles.travelTimeBlock}>
-          <Box className={styles.timeBlock}>
+        <div className={styles.travelTimeBlock}>
+          <div className={styles.timeBlock}>
             <DirectionsWalkIcon />
             <span>
               {wayData.walkingAtStartTime} {translate('mainPage.resultField.otherUnits.time')}
             </span>
-          </Box>
+          </div>
           <ArrowRightAltIcon />
-          <Box className={styles.timeBlock}>
+          <div className={styles.timeBlock}>
             <LocalTaxiIcon />
             <span>
               {wayData.taxiTime} {translate('mainPage.resultField.otherUnits.time')}
             </span>
-          </Box>
+          </div>
           <ArrowRightAltIcon />
-          <Box className={styles.timeBlock}>
+          <div className={styles.timeBlock}>
             <DirectionsWalkIcon />
             <span>
               {wayData.walkingAtEndTime} {translate('mainPage.resultField.otherUnits.time')}
             </span>
-          </Box>
-        </Box>
-      </Box>
-    </ButtonBase>
+          </div>
+        </div>
+      </div>
+    </button>
   );
 }
 

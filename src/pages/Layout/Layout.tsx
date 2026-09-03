@@ -2,7 +2,6 @@ import styles from './Layout.module.scss';
 import { useEffect, useState } from 'react';
 import Sidebar from '@widgets/Sidebar';
 import Topbar from '@widgets/Topbar';
-import { Box } from '@mui/material';
 import { useGetCitiesQuery } from '@shared/api/endpoints/catalogApi';
 import { getErrorMessage } from '@shared/api/getErrorMessage';
 import { useToast } from '@shared/hooks/useToast';
@@ -29,12 +28,12 @@ function Layout() {
   };
 
   return (
-    <Box className={styles.layout}>
+    <div className={styles.layout}>
       <Topbar onMenuButtonClick={handleMenuButtonClick} onLogoClick={closeSidebar} isSidebarOpen={isSidebarOpen} />
       <Sidebar isOpen={isSidebarOpen} onClose={closeSidebar} />
       <Outlet />
       <Footer />
-    </Box>
+    </div>
   );
 }
 

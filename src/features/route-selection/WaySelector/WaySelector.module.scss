@@ -1,4 +1,9 @@
 @use '../../../app/styles/variables' as *;
+@use '../../../app/styles/mixins' as *;
+
+.waySelector {
+  @include flex-column(16px);
+}
 
 .linkButtonBox {
   display: flex;
@@ -7,10 +12,16 @@
 }
 
 .taxiOrderButton {
+  @include button-reset;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   border-radius: $border-radius-small;
   padding: 20px 102px;
   width: 100%;
   height: 56px;
   color: $color-surface;
+  background-color: $color-primary;
   font-family: $font-family;
+  text-decoration: none;
 }

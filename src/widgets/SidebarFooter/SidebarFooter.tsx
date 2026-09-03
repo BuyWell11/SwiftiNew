@@ -1,5 +1,5 @@
 import styles from './SidebarFooter.module.scss';
-import { AppBar, Box } from '@mui/material';
+import { AppBar } from '@mui/material';
 import Telegram from '@shared/assets/TelegramIcon.svg';
 import MailIcon from '@shared/assets/MailIcon.svg';
 import DonateIcon from '@shared/assets/DonateIcon.svg';
@@ -31,21 +31,21 @@ function SidebarFooter({ className }: Props) {
   return (
     <AppBar position="static" color="primary" className={`${styles.appBarFooter} ${className}`}>
       <img src={SlideMenuWave} alt="Wave" className={styles.sidebarFooterWave} />
-      <Box className={styles.sidebarFooter}>
+      <div className={styles.sidebarFooter}>
         <hr className={styles.separator} />
-        <Box className={styles.imgBoxAndSelect}>
-          <Box className={styles.sidebarFooterImgBox}>
+        <div className={styles.imgBoxAndSelect}>
+          <div className={styles.sidebarFooterImgBox}>
             <IconLink image={MailIcon} link="mailto:swiftitraveler@gmail.com" />
             <IconLink image={Telegram} link="https://t.me/swifti_app" />
             <IconLink image={DonateIcon} link="https://socprofile.com/swifti/" />
-          </Box>
+          </div>
           <CustomSelect
             options={translatedLanguages}
             selectedOption={translatedLanguages.find((language) => language.value === localization.value) || localization}
             handleClick={handleChangeLanguage}
           />
-        </Box>
-      </Box>
+        </div>
+      </div>
     </AppBar>
   );
 }

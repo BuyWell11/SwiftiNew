@@ -1,4 +1,9 @@
 @use '../../../app/styles/variables' as *;
+@use '../../../app/styles/mixins' as *;
+
+.wayBlockButton {
+  @include button-reset;
+}
 
 .wayBlock {
   border: 1px solid $color-secondary;

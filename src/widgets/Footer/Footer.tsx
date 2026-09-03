@@ -1,5 +1,4 @@
 import styles from './Footer.module.scss';
-import { Box } from '@mui/material';
 import { Link } from 'react-router-dom';
 import { translate } from '@shared/services/LocalizationService';
 import { ROUTES } from '@shared/config/routes';
@@ -11,7 +10,7 @@ function Footer() {
     });
   };
   return (
-    <Box className={styles.footer}>
+    <div className={styles.footer}>
       <hr className={styles.separator} />
       <Link to={ROUTES.guide} onClick={scrollToTop}>
         {translate('basement.documents.userGuide')}
@@ -19,7 +18,7 @@ function Footer() {
       <Link to={ROUTES.termOfUse} onClick={scrollToTop}>
         {translate('basement.documents.termOfUse')}
       </Link>
-    </Box>
+    </div>
   );
 }
 

@@ -1,5 +1,4 @@
 import styles from './WaySelector.module.scss';
-import { Box, Button, Stack } from '@mui/material';
 import { useCallback, useState } from 'react';
 import OptimalWayBlock from '@features/route-selection/OptimalWayBlock';
 import DefaultWayBlock from '@features/route-selection/DefaultWayBlock';
@@ -41,10 +40,10 @@ function WaySelector() {
   );
 
   return (
-    <Stack direction="column" spacing={2}>
+    <div className={styles.waySelector}>
       <AddressesInputBlock handleSubmit={handleSubmit} />
       {isLoading && <Loader />}
-      {requestError && <Box role="alert">{requestError}</Box>}
+      {requestError && <div role="alert">{requestError}</div>}
       {optimalWay && defaultWay && (
         <>
           <OptimalWayBlock
@@ -62,7 +61,7 @@ function WaySelector() {
             selected={!isOptimalSelected}
           />
           {isOptimalSelected && optimalWay.startUrl && optimalWay.endUrl && (
-            <Box className={styles.linkButtonBox}>
+            <div className={styles.linkButtonBox}>
               <LinkButton href={optimalWay.startUrl}>
                 <DirectionsWalkIcon />
                 <ArrowRightAltIcon />
@@ -73,19 +72,19 @@ function WaySelector() {
                 <ArrowRightAltIcon />
                 <DirectionsWalkIcon />
               </LinkButton>
-            </Box>
+            </div>
           )}
-          <Button
+          <a
             href={isOptimalSelected ? optimalWay.taxiUrl : defaultWay.taxiUrl}
             target="_blank"
-            variant="contained"
+            rel="noreferrer"
             className={styles.taxiOrderButton}
           >
             {translate('mainPage.resultField.orderTaxi')}
-          </Button>
+          </a>
         </>
       )}
-    </Stack>
+    </div>
   );
 }
 

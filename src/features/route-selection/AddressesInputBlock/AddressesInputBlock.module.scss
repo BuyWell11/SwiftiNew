@@ -1,4 +1,5 @@
 @use '../../../app/styles/variables' as *;
+@use '../../../app/styles/mixins' as *;
 
 .addressesInputBlock {
   display: flex;
@@ -19,6 +20,11 @@
   flex-direction: column;
 }
 
+.citySelectRow {
+  @include flex-row(4px);
+  align-items: center;
+}
+
 .citySelectBlock {
   align-self: flex-start;
   font-weight: 600;
@@ -30,6 +36,7 @@
 }
 
 .customSlider {
+  @include flex-row(8px);
   width: 300px;
   margin-bottom: 16px;
   align-items: center;
@@ -44,12 +51,20 @@
 }
 
 .addressTextfieldBlock {
+  @include flex-column(12px);
   margin-bottom: 16px;
 }
 
 .agreeBlock {
+  @include flex-row(8px);
   align-items: center;
   margin-bottom: 20px;
+}
+
+.agreeCheckbox {
+  width: 18px;
+  height: 18px;
+  accent-color: $color-primary;
 }
 
 .separator {
@@ -62,7 +77,9 @@
 }
 
 .addressesInputButton {
+  @include button-reset;
   color: $color-surface;
+  background-color: $color-primary;
   border-radius: $border-radius-small;
   padding: 16px 32px;
   width: 237px;
@@ -71,6 +88,11 @@
   font-weight: 500;
   font-size: $font-size-body;
   line-height: 100%;
+
+  &:disabled {
+    cursor: not-allowed;
+    opacity: 0.6;
+  }
 }
 
 .sliderIcon {
