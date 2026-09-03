@@ -1,6 +1,6 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import { API_ROUTES } from '@shared/api/apiRoutes';
-import { BACKEND, YANDEX_API, localizations } from '@shared/config/vars';
+import { BACKEND_LINK, YANDEX_API, localizations } from '@shared/config/vars';
 import { getCurrentLocale } from '@shared/config/locale';
 import type { AddressDTO } from '@shared/api/types/AddressDTO';
 import type { YandexAddressDTO } from '@shared/api/types/YandexAddressDTO';
@@ -28,7 +28,7 @@ export const addressApi = createApi({
   endpoints: (builder) => ({
     getBackendAddresses: builder.query<AddressDTO[], AddressQuery>({
       query: ({ address, city, maxAddress = 4 }) => ({
-        url: `${BACKEND}${API_ROUTES.addresses}`,
+        url: `${BACKEND_LINK}${API_ROUTES.addresses}`,
         params: { address, addressesNumber: maxAddress, city: city.value },
       }),
     }),

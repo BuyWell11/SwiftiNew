@@ -1,8 +1,22 @@
-# React + Vite
+# Swifti
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Local development
 
-Currently, two official plugins are available:
+```bash
+npm install
+copy .env.example .env.local
+npm run dev
+```
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Set `VITE_BACKEND_LINK` in `.env.local` to the public backend URL. `VITE_*` values are embedded into the production bundle and must not contain secrets.
+
+## GitHub Pages
+
+The `main` branch is deployed by `.github/workflows/deploy-pages.yml`. In repository **Settings → Pages**, select **GitHub Actions** as the source.
+
+Optional repository variables used during the build:
+
+- `VITE_BACKEND_LINK` — public HTTPS backend URL
+- `VITE_YANDEX_API` — Yandex suggestions API URL
+
+The Vite base path is derived from `GITHUB_REPOSITORY`, so it works both before and after renaming the repository from `SwiftiNew` to `Swifti`.

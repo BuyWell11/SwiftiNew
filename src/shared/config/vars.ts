@@ -1,6 +1,6 @@
 import type { CustomSelectOption } from '@shared/types/CustomSelectOption';
 
-export const BACKEND = import.meta.env.VITE_APP_LINK;
+export const BACKEND_LINK = import.meta.env.VITE_BACKEND_LINK;
 
 export const YANDEX_API = import.meta.env.VITE_YANDEX_API;
 
