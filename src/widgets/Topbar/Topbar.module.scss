@@ -1,0 +1,22 @@
+@use '../../app/styles/variables' as *;
+
+.topBarBtn {
+  color: $color-text;
+}
+
+.noShadow {
+  box-shadow: none;
+}
+
+.topBar {
+  background-color: $color-surface;
+  border-bottom: 1px solid $color-secondary;
+  box-shadow: none;
+  justify-content: space-between;
+  z-index: 1300;
+}
+
+.logo {
+  width: 81px;
+  height: 32px;
+}

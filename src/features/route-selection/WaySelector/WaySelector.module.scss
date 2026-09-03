@@ -1,0 +1,16 @@
+@use '../../../app/styles/variables' as *;
+
+.linkButtonBox {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.taxiOrderButton {
+  border-radius: $border-radius-small;
+  padding: 20px 102px;
+  width: 100%;
+  height: 56px;
+  color: $color-surface;
+  font-family: $font-family;
+}

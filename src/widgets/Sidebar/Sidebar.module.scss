@@ -1,0 +1,33 @@
+@use '../../app/styles/variables' as *;
+
+.sidebar {
+  color: $color-text;
+  display: flex;
+  flex-direction: column;
+}
+
+.sidebar a {
+  color: $color-text;
+  text-decoration: none;
+}
+
+.listItem {
+  height: fit-content;
+}
+
+.list {
+  margin-top: 24px;
+}
+
+.sidebarCloseIcon {
+  color: $color-text;
+}
+
+.sidebarFoot {
+  height: fit-content;
+  display: flex;
+  margin-top: auto;
+  flex-direction: column;
+  justify-content: flex-end;
+  justify-self: flex-end;
+}

@@ -1,0 +1,65 @@
+@use '../../app/styles/variables' as *;
+
+.page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-left: 16px;
+  margin-right: 16px;
+  margin-bottom: 40px;
+}
+
+.termOfUsePage {
+  width: 360px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.termOfUsePage ol {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-left: 24px;
+}
+
+.title {
+  font-weight: 700;
+  font-size: $font-size-title;
+  line-height: 117%;
+  color: $color-text;
+}
+
+.caption {
+  font-weight: 400;
+  font-size: $font-size-caption;
+  line-height: 100%;
+  color: $color-text;
+}
+
+.sectionTitle {
+  font-weight: 600;
+  font-size: $font-size-heading;
+  line-height: 100%;
+  color: $color-text;
+}
+
+.body {
+  font-weight: 500;
+  font-size: $font-size-small;
+  line-height: 114%;
+  color: $color-text;
+}
+
+.bodyRegular {
+  font-weight: 400;
+  font-size: $font-size-small;
+  line-height: 114%;
+  color: $color-text;
+}

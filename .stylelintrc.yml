@@ -1,0 +1,24 @@
+extends: stylelint-config-standard-scss
+customSyntax: postcss-scss
+plugins:
+  - stylelint-scss
+rules:
+  scss/at-import-partial-extension: null
+  declaration-empty-line-before: null
+  selector-class-pattern: null
+  no-descending-specificity: null
+  color-hex-length: null
+  no-empty-source: null
+  declaration-block-single-line-max-declarations: null
+  at-rule-empty-line-before: null
+  font-family-name-quotes: null
+  rule-empty-line-before: null
+  no-duplicate-selectors: null
+  shorthand-property-no-redundant-values: null
+  media-feature-range-notation: null
+  length-zero-no-unit: null
+  custom-property-pattern: null
+  declaration-block-no-shorthand-property-overrides: null
+  color-function-notation: null
+  alpha-value-notation: null
+  selector-pseudo-class-no-unknown: null

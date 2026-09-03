@@ -9,32 +9,29 @@ services:
     networks:
       swifti_network:
 
-
   backend:
     build:
       context: ./backend
     container_name: backend
     restart: always
     ports:
-      - "3000:3000"
+      - '3000:3000'
     networks:
       swifti_network:
-
 
   nginx:
     build:
       context: ./nginx
     container_name: nginx
     ports:
-      - "80:80"
-      - "443:443"
+      - '80:80'
+      - '443:443'
     depends_on:
       - frontend
       - backend
     restart: always
     networks:
       swifti_network:
-
 
 networks:
   swifti_network:

@@ -1,26 +1,44 @@
 module.exports = {
   root: true,
-  env: {browser: true, es6: true, node: true},
-  extends: [
-    'eslint:recommended',
-    'plugin:react/recommended',
-    'plugin:react/jsx-runtime',
-    'plugin:react-hooks/recommended',
-  ],
-  ignorePatterns: ['dist', '.eslintrc.cjs'],
-  parserOptions: {ecmaVersion: 'latest', sourceType: 'module'},
-  settings: {react: {version: '18.2'}},
-  plugins: ['react-refresh'],
-  globals: {
-    NodeJS: true,
-    GeolocationPosition: 'readonly',
-    GeolocationPositionError: 'readonly',
-  },
-  rules: {
-    'react-refresh/only-export-components': [
-      'warn',
-      {allowConstantExport: true},
+  env: { browser: true, es2022: true, node: true },
+  parser: '@typescript-eslint/parser',
+  parserOptions: { ecmaVersion: 'latest', sourceType: 'module', project: './tsconfig.json' },
+  settings: {
+    react: { version: 'detect' },
+    'import/resolver': { typescript: {} },
+    'boundaries/elements': [
+      { type: 'app', pattern: 'src/app/*' },
+      { type: 'pages', pattern: 'src/pages/*' },
+      { type: 'widgets', pattern: 'src/widgets/*' },
+      { type: 'features', pattern: 'src/features/*' },
+      { type: 'entities', pattern: 'src/entities/*' },
+      { type: 'shared', pattern: 'src/shared/*' },
     ],
   },
-  parser: '@typescript-eslint/parser',
-}
+  extends: ['eslint:recommended', 'plugin:react/recommended', 'plugin:react/jsx-runtime', 'plugin:react-hooks/recommended'],
+  plugins: ['@typescript-eslint', 'import', 'boundaries', 'react-refresh'],
+  ignorePatterns: ['dist', 'node_modules', '*.config.js'],
+  rules: {
+    'no-console': 'error',
+    'no-unused-vars': 'off',
+    '@typescript-eslint/no-unused-vars': ['error', { argsIgnorePattern: '^_' }],
+    '@typescript-eslint/no-explicit-any': 'error',
+    '@typescript-eslint/no-empty-object-type': 'off',
+    'import/no-unresolved': 'error',
+    'import/no-duplicates': 'error',
+    'boundaries/element-types': [
+      'error',
+      {
+        default: 'allow',
+        rules: [
+          { from: 'entities', disallow: ['app', 'pages', 'widgets', 'features'] },
+          { from: 'features', disallow: ['app', 'pages', 'widgets'] },
+          { from: 'widgets', disallow: ['app', 'pages'] },
+          { from: 'pages', disallow: ['app'] },
+        ],
+      },
+    ],
+    'react-refresh/only-export-components': 'off',
+    'react-hooks/exhaustive-deps': 'error',
+  },
+};

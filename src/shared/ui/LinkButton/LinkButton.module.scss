@@ -1,0 +1,16 @@
+@use '@app/styles/variables' as *;
+
+.linkButton {
+  padding: 24px 37px;
+  width: 160px;
+  height: 68px;
+}
+
+.iconsBox {
+  display: flex;
+  gap: 12px;
+}
+
+.iconsBox svg {
+  color: $color-text;
+}
